@@ -2,12 +2,19 @@
 (function(){
   'use strict';
 
-  /* ---------- Header Scroll ---------- */
+  /* ---------- Header Scroll + Info Bar ---------- */
   const header = document.querySelector('.header');
+  const topInfoBar = document.querySelector('.top-info-bar');
   const scrollThreshold = 60;
   function handleScroll(){
     if(!header) return;
-    header.classList.toggle('scrolled', window.scrollY > scrollThreshold);
+    const scrolled = window.scrollY > scrollThreshold;
+    header.classList.toggle('scrolled', scrolled);
+    // Hide info bar on scroll and move header up
+    if(topInfoBar){
+      topInfoBar.classList.toggle('hidden', scrolled);
+      header.style.top = scrolled ? '0' : '';
+    }
     const btt = document.querySelector('.back-to-top');
     if(btt) btt.classList.toggle('show', window.scrollY > 400);
   }

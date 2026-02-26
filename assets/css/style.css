@@ -208,11 +208,21 @@ button {
 
 /* ---------- Top Info Bar ---------- */
 .top-info-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1001;
   background: var(--dark);
   color: rgba(255, 255, 255, .85);
   font-size: .82rem;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, .08)
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  transition: transform .3s ease
+}
+
+.top-info-bar.hidden {
+  transform: translateY(-100%)
 }
 
 .top-info-bar .container {
@@ -265,7 +275,7 @@ button {
 /* ---------- Header / Navbar ---------- */
 .header {
   position: fixed;
-  top: 0;
+  top: 38px;
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -487,7 +497,7 @@ button {
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: 140px 0 80px;
+  padding: 178px 0 80px;
   background: linear-gradient(135deg, var(--emerald-light) 0%, var(--white) 50%, var(--gold-light) 100%);
   position: relative;
   overflow: hidden
@@ -702,7 +712,7 @@ button {
 
 @media(max-width:768px) {
   .hero {
-    padding: 120px 0 60px
+    padding: 158px 0 60px
   }
 
   .hero .container {
@@ -1710,7 +1720,7 @@ button {
 
 /* ---------- Page Banner ---------- */
 .page-banner {
-  padding: 140px 0 60px;
+  padding: 178px 0 60px;
   background: linear-gradient(135deg, var(--emerald-light) 0%, var(--white) 100%);
   text-align: center;
   position: relative

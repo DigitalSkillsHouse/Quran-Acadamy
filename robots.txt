@@ -1,0 +1,36 @@
+User-agent: *
+Allow: /
+
+# Specifically allow major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Explicitly allow AI crawlers that respect robots.txt (e.g., ChatGPT, Claude, Perplexity)
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+# Ensure critical resources are not blocked
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.woff$
+Allow: /*.woff2$
+Allow: /*.ttf$
+Allow: /*.pdf$
+
+Sitemap: https://[YOUR-PRODUCTION-DOMAIN.COM]/sitemap.xml

@@ -33,23 +33,6 @@
     .founder-story { margin-top: 16px; margin-bottom: 24px; font-size: 1.1rem; line-height: 1.6; color: var(--text-dark); }
     .modal-submit-btn { width: 100%; justify-content: center; }
   </style>
-
-  <style>
-    .about-founder-image {
-      display: block;
-      width: 100%;
-      max-width: 460px;
-      height: auto;
-      object-fit: contain;
-      margin-inline: auto;
-    }
-    @media (max-width: 768px) {
-      .about-founder-image {
-        max-width: 300px;
-        margin: 0 auto 2rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -103,8 +86,8 @@
     </div>
   </div>
 </header>
-  <div class="mobile-overlay"></div>
-
+<div class="mobile-overlay"></div>
+<main id="main">
   <!-- 1. Trusted Hero -->
   <section class="about-v2-hero">
     <div class="container text-center">
@@ -121,16 +104,8 @@
   <section class="section about-v2-founder bg-light">
     <div class="container">
       <div class="founder-grid">
-        <div class="founder-illustration fade-in" style="display:flex; justify-content:center; align-items:center;">
-          <img
-            src="assets/images/female-quran-teacher-hijab-hero.webp"
-            alt="Founder and Female Quran Teacher Shagufta Rehan"
-            class="about-founder-image"
-            loading="lazy"
-            decoding="async"
-            width="520"
-            height="650"
-          />
+        <div class="founder-illustration fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle><path d="M16 11l2 2 4-4"></path></svg>
         </div>
         <div class="founder-content fade-in">
           <span class="section-badge">Our Founder</span>

@@ -1,197 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noorani Qaida Online Qatar | Best Classes for Kids & Beginners</title>
-  <meta name="description" content="Start learning Arabic and Quran reading with authentic Noorani Qaida online classes in Qatar. One-to-one sessions with female Quran teachers. Book up to 3 trial classes.">
-  <meta name="keywords" content="noorani qaida online qatar, learn arabic alphabets online, noorani qaida classes doha, beginner quran classes qatar, arabic pronunciation course">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Qurana Academy">
-  <link rel="canonical" href="https://www.qurana-academy.com/services/noorani-qaida.html">
-  <meta property="og:title" content="Noorani Qaida Online Classes in Qatar | Qurana Academy">
-  <meta property="og:description" content="Master Arabic alphabets and pronunciation with our Noorani Qaida online course. Female tutors, one-to-one sessions. Up to 3 trial classes available.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.qurana-academy.com/services/noorani-qaida.html">
-  <meta property="og:locale" content="en_QA">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="../assets/css/style.min.css" as="style">
-  <link rel="stylesheet" href="../assets/css/style.min.css">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Schema -->
-  <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Qurana Academy", "url": "https://[YOUR-PRODUCTION-DOMAIN.COM]", "logo": "https://[YOUR-PRODUCTION-DOMAIN.COM]/assets/images/logo.png"}
-  </script>
+import re
 
-  <!-- Schema: Course -->
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "Course",
-  "name": "Noorani Qaida Online Qatar | Best Classes for Kids & Beginners",
-  "description": "Start learning Arabic and Quran reading with authentic Noorani Qaida online classes in Qatar. One-to-one sessions with female Quran teachers. Book up to 3 trial classes.",
-  "provider": {
-    "@type": "EducationalOrganization",
-    "name": "Al-Tajweed ul Quran Academy",
-    "sameAs": "https://www.qurana-academy.com"
-  },
-  "courseMode": "Online",
-  "availableLanguage": [
-    "English",
-    "Urdu"
-  ],
-  "audience": [
-    {
-      "@type": "Audience",
-      "audienceType": "Women"
-    },
-    {
-      "@type": "Audience",
-      "audienceType": "Girls"
-    },
-    {
-      "@type": "Audience",
-      "audienceType": "Kids"
-    },
-    {
-      "@type": "Audience",
-      "audienceType": "Boys up to 15"
-    }
-  ]
-}
-  </script>
-  <!-- Schema: BreadcrumbList -->
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.qurana-academy.com/index.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Courses"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Noorani Qaida",
-      "item": "https://www.qurana-academy.com/services/noorani-qaida.html"
-    }
-  ]
-}
-  </script>
-  <!-- Schema: FAQPage -->
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Do I need any prior knowledge for this course?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Not at all. Our beginner courses start from scratch. Our female Quran teachers will patiently guide you or your child through the Arabic alphabet at a pace that ensures complete understanding."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are all teachers female?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, our growing team consists strictly of verified female Quran teachers. We focus on providing a secure and comfortable learning environment for women, girls, and boys up to 15 years."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do the online classes work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Classes are conducted live, one-to-one, using Zoom or Google Meet. We offer flexible Qatar timings, and parents receive regular progress updates directly via WhatsApp."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I take a trial class before paying?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. We offer up to 3 trial classes so you can experience our teaching methodology and meet your tutor before deciding to enroll. Reach out on WhatsApp to schedule yours."
-      }
-    }
-  ]
-}
-  </script>
+with open('services/noorani-qaida.html', 'r', encoding='utf-8') as f:
+    text = f.read()
 
-  <style>
-    .skip-link { position:absolute;left:-9999px;z-index:999;padding:1em;background-color:white;color:black;opacity:0; }
-    .skip-link:focus { left:50%; opacity:1; }
-    .modal-submit-btn { width: 100%; justify-content: center; }
-  </style>
-</head>
+# Protect Header/Footer
+header_end = text.find('</header>') + 9
+footer_start = text.find('<footer')
 
-<body>
-<a href="#main" class="skip-link" >Skip to main content</a>
+head_header = text[:header_end]
+main_content = text[header_end:footer_start]
+footer_content = text[footer_start:]
 
+# 1. SEO & Meta (Head)
+head_header = head_header.replace('Start learning Arabic and Quran reading with the best Noorani Qaida online classes in Qatar. One-to-one sessions with female Quran teachers. Book a free trial!', 'Start learning Arabic and Quran reading with authentic Noorani Qaida online classes in Qatar. One-to-one sessions with female Quran teachers. Book up to 3 trial classes.')
+head_header = head_header.replace('Master Arabic alphabets and pronunciation with our Noorani Qaida online course. Certified tutors, 1-on-1 sessions. Free trial available.', 'Master Arabic alphabets and pronunciation with our Noorani Qaida online course. Female tutors, one-to-one sessions. Up to 3 trial classes available.')
+head_header = head_header.replace('"description": "Start learning Arabic and Quran reading with the best Noorani Qaida online classes in Qatar. One-to-one sessions with female Quran teachers. Book a free trial!"', '"description": "Start learning Arabic and Quran reading with authentic Noorani Qaida online classes in Qatar. One-to-one sessions with female Quran teachers. Book up to 3 trial classes."')
 
-<!-- Top Info Bar -->
-<div class="top-info-bar">
-  <div class="container">
-    <div class="top-info-bar-left">
-      <div class="info-item"><span class="info-icon">📞</span> <a href="tel:0331627691">0331-627-691</a></div>
-      <div class="info-item"><span class="info-icon">📞</span> <a href="tel:03306923454">0330-692-3454</a></div>
-      <div class="info-item"><span class="info-icon">✉</span> <a href="mailto:info@qurana-academy.com">info@qurana-academy.com</a></div>
-    </div>
-    <div class="top-info-bar-right">
-      <div class="info-item"><span class="info-icon">🕐</span> Sat-Thu, 8AM-10PM</div>
-    </div>
-  </div>
-</div>
-<!-- Header -->
-<header class="header" role="banner">
-  <div class="container">
-    <a href="../index.html" class="logo" aria-label="Qurana Academy Home">
-      <div class="logo-icon">📖</div>
-      Qurana<span>Academy</span>
-    </a>
-    <nav class="nav-links" role="navigation" aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <div class="has-dropdown">
-        <a href="#">Services ▾</a>
-        <div class="dropdown">
-          <a href="noorani-qaida.html" class="active">Noorani Qaida</a>
-          <a href="quran-tafseer.html">Quran Tafseer</a>
-          <a href="quran-memorization.html">Quran Memorization</a>
-          <a href="six-kalima.html">Six Kalima Online</a>
-        </div>
-      </div>
-      <div class="has-dropdown">
-        <a href="#">Tutors ▾</a>
-        <div class="dropdown">
-          <a href="../tutors/female-tutors.html">Female Tutors</a>
-        </div>
-      </div>
-      <a href="../pricing.html">Pricing</a>
-      <a href="../contact.html">Contact</a>
-      <a href="#" class="btn btn-primary nav-cta" data-modal="open">Book Free Trial</a>
-    </nav>
-    <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</header>
-  <div class="mobile-overlay"></div>
-
-
-  
+# 2. Hero Section
+# Keep layout, improve typography, add trust points, change CTAs
+hero_replacement = """
   <!-- 1. Premium Hero -->
   <section class="course-v2-hero">
     <div class="container text-center">
@@ -219,12 +46,11 @@
       </div>
     </div>
   </section>
+"""
+main_content = re.sub(r'<!-- 1\. Premium Hero -->.*?<!-- 2 & 3\. Who is this for & What you learn -->', hero_replacement + '\n  <!-- 2 & 3. Who is this for & What you learn -->', main_content, flags=re.DOTALL)
 
-  <!-- 2 & 3. Who is this for & What you learn -->
-  <section class="section course-v2-overview bg-light">
-    <div class="container">
-      <div class="overview-grid">
-        
+# 3. Who is this for
+who_for_replacement = """
         <!-- Who is this for -->
         <div class="who-for-box fade-in">
           <h2 class="section-title text-left" style="font-size:1.8rem;">Who is this course for?</h2>
@@ -253,8 +79,11 @@
             </div>
           </div>
         </div>
+"""
+main_content = re.sub(r'<!-- Who is this for -->.*?<!-- What you will learn -->', who_for_replacement + '\n        <!-- What you will learn -->', main_content, flags=re.DOTALL)
 
-        
+# 4. What you will learn
+what_learn_replacement = """
         <!-- What you will learn -->
         <div class="what-learn-box fade-in">
           <h2 class="section-title text-left" style="font-size:1.8rem;">What Students Learn</h2>
@@ -277,12 +106,11 @@
             </li>
           </ul>
         </div>
+"""
+main_content = re.sub(r'<!-- What you will learn -->.*?</div>\s*</div>\s*</section>', what_learn_replacement + '\n      </div>\n    </div>\n  </section>', main_content, flags=re.DOTALL)
 
-      </div>
-    </div>
-  </section>
-
-  
+# 5. Course Curriculum
+curriculum_replacement = """
   <!-- 4. Course Curriculum -->
   <section class="section course-v2-curriculum">
     <div class="container text-center">
@@ -320,8 +148,11 @@
       </div>
     </div>
   </section>
+"""
+main_content = re.sub(r'<!-- 4\. Course Curriculum -->.*?<!-- 5\. Learning Outcomes -->', curriculum_replacement + '\n  <!-- 5. Learning Outcomes -->', main_content, flags=re.DOTALL)
 
-  
+# 6. Learning Outcomes
+outcomes_replacement = """
   <!-- 5. Learning Outcomes -->
   <section class="section course-v2-outcomes bg-emerald-light">
     <div class="container">
@@ -339,8 +170,11 @@
       </div>
     </div>
   </section>
+"""
+main_content = re.sub(r'<!-- 5\. Learning Outcomes -->.*?<!-- 6\. Teaching Methodology -->', outcomes_replacement + '\n  <!-- 6. Teaching Methodology -->', main_content, flags=re.DOTALL)
 
-  
+# 7. Teaching Methodology
+methodology_replacement = """
   <!-- 6. Teaching Methodology -->
   <section class="section course-v2-methodology bg-light">
     <div class="container text-center">
@@ -381,8 +215,11 @@
       </div>
     </div>
   </section>
+"""
+main_content = re.sub(r'<!-- 6\. Teaching Methodology -->.*?<!-- 7\. Why Choose Us \(EEAT\) -->', methodology_replacement + '\n  <!-- 7. Why Choose Us (EEAT) -->', main_content, flags=re.DOTALL)
 
-  
+# 8. Trust Section (EEAT)
+trust_replacement = """
   <!-- 7. Why Choose Us (EEAT) -->
   <section class="section course-v2-trust">
     <div class="container">
@@ -402,8 +239,11 @@
       </div>
     </div>
   </section>
+"""
+main_content = re.sub(r'<!-- 7\. Why Choose Us \(EEAT\) -->.*?<!-- 8\. FAQ -->', trust_replacement + '\n  <!-- 8. FAQ -->', main_content, flags=re.DOTALL)
 
-  
+# 9. FAQ
+faq_replacement = """
   <!-- 8. FAQ -->
   <section class="section course-v2-faq bg-light">
     <div class="container">
@@ -436,8 +276,11 @@
       </div>
     </div>
   </section>
+"""
+main_content = re.sub(r'<!-- 8\. FAQ -->.*?<!-- 9\. Final CTA -->', faq_replacement + '\n  <!-- 9. Final CTA -->', main_content, flags=re.DOTALL)
 
-  
+# 10. Final CTA
+cta_replacement = """
   <!-- 9. Final CTA -->
   <section class="section final-cta text-center" id="contact">
     <div class="container">
@@ -451,95 +294,41 @@
       </div>
     </div>
   </section>
+"""
+main_content = re.sub(r'<!-- 9\. Final CTA -->.*?</main>', cta_replacement + '\n</main>', main_content, flags=re.DOTALL)
 
-</main>
-<footer class="footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Qurana Academy</h4>
-        <p>The leading online Quran academy serving students across Qatar with certified tutors and personalized 1-on-1 classes.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">in</a>
-          <a href="#" aria-label="YouTube">▶</a>
-          <a href="#" aria-label="Twitter">𝕏</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Our Courses</h4>
-        <a href="noorani-qaida.html">Noorani Qaida</a>
-        <a href="quran-tafseer.html">Quran Tafseer</a>
-        <a href="quran-memorization.html">Quran Memorization</a>
-        <a href="six-kalima.html">Six Kalima Online</a>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <a href="../about.html">About Us</a>
-        <a href="../pricing.html">Pricing Plans</a>
-        <a href="../blog/">Blog</a>
-        <a href="../faq.html">FAQs</a>
-        <a href="../reviews.html">Student Reviews</a>
-        <a href="../contact.html">Contact Us</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact Info</h4>
-        <p>Email: info@qurana-academy.com</p>
-        <p>WhatsApp: +974 XXXX XXXX</p>
-        <p>Available: Sat–Thu, 8AM–10PM</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Qurana Academy. All Rights Reserved.</p>
-      <div class="footer-locations">
-        <span>Serving:</span>
-        <span>Doha</span> · <span>Al Wakrah</span> · <span>Al Khor</span> · <span>Lusail</span> · <span>All Qatar</span>
-      </div>
-    </div>
-  </div>
-</footer>
+# Footer CTAs (in modal)
+footer_content = footer_content.replace('Book Free Trial', 'Book Up to 3 Trial Classes')
+footer_content = footer_content.replace('Start Your Free Trial', 'Start Your Up to 3 Trial Classes')
+footer_content = footer_content.replace('Experience a free Noorani Qaida class', 'Experience up to 3 Noorani Qaida trial classes')
+footer_content = footer_content.replace('style="width:100%;justify-content:center"', 'class="modal-submit-btn"')
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/974XXXXXXXX" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+# Remove any remaining Skype references
+main_content = main_content.replace('Skype', 'Google Meet')
+footer_content = footer_content.replace('Skype', 'Google Meet')
 
-<!-- Back to Top -->
-<a href="#" class="back-to-top" aria-label="Back to top">↑</a>
+# Schema Sync (FAQ)
+head_header = head_header.replace('"text": "Our beginners\' courses start from absolute scratch. If you\'re enrolling in an advanced course like Hifz or Tafseer, our tutors will first conduct a basic assessment to ensure it\'s the right fit for your current level."', '"text": "Not at all. Our beginner courses start from scratch. Our female Quran teachers will patiently guide you or your child through the Arabic alphabet at a pace that ensures complete understanding."')
+head_header = head_header.replace('"text": "Yes, all our classes are conducted by highly qualified, verified female Quran teachers. We specialize in providing a comfortable and respectful learning environment for women, girls, and young children in Qatar."', '"text": "Yes, our growing team consists strictly of verified female Quran teachers. We focus on providing a secure and comfortable learning environment for women, girls, and boys up to 15 years."')
+head_header = head_header.replace('"text": "Classes are held live, one-to-one, via Zoom or Skype. You just need a stable internet connection and a device (laptop, tablet, or smartphone). The tutor shares their screen to display the Quran or Qaida, making it easy to follow along."', '"text": "Classes are conducted live, one-to-one, using Zoom or Google Meet. We offer flexible Qatar timings, and parents receive regular progress updates directly via WhatsApp."')
+head_header = head_header.replace('"text": "Absolutely. We offer a completely free, no-obligation trial class. This allows you to experience our teaching methodology and meet the tutor before deciding to enroll."', '"text": "Yes. We offer up to 3 trial classes so you can experience our teaching methodology and meet your tutor before deciding to enroll. Reach out on WhatsApp to schedule yours."')
 
-<!-- Free Trial Modal -->
-<div class="modal-overlay">
-  <div class="modal">
-    <button class="modal-close" aria-label="Close modal">✕</button>
-    <h2>Start Your Up to 3 Trial Classes</h2>
-    <p>Experience up to 3 Noorani Qaida trial classes with our certified tutor.</p>
-    <form action="thank-you.html" id="trialForm">
-      <div class="form-group">
-        <input aria-label="Your Full Name" type="text" name="name" placeholder="Your Full Name" required>
-        <div class="form-error">Please enter your name</div>
-      </div>
-      <div class="form-group">
-        <input aria-label="Email Address" type="email" name="email" placeholder="Email Address" required>
-        <div class="form-error">Please enter a valid email</div>
-      </div>
-      <div class="form-group">
-        <input aria-label="WhatsApp Number (e.g. +974...)" type="tel" name="phone" placeholder="WhatsApp Number (e.g. +974...)" required>
-        <div class="form-error">Please enter your phone number</div>
-      </div>
-      <div class="form-group">
-        <select name="course" required>
-          <option value="">Select Course</option>
-          <option value="noorani-qaida" selected>Noorani Qaida</option>
-          <option value="quran-reading">Quran Reading with Tajweed</option>
-          <option value="memorization">Quran Memorization (Hifz)</option>
-          <option value="tafseer">Quran Tafseer</option>
-          <option value="six-kalima">Six Kalima</option>
-        </select>
-        <div class="form-error">Please select a course</div>
-      </div>
-      <button type="submit" class="btn btn-primary modal-submit-btn">Book Up to 3 Trial Classes →</button>
-    </form>
-  </div>
-</div>
+# CSS fixes
+css_to_add = """
+  <style>
+    .skip-link { position:absolute;left:-9999px;z-index:999;padding:1em;background-color:white;color:black;opacity:0; }
+    .skip-link:focus { left:50%; opacity:1; }
+    .modal-submit-btn { width: 100%; justify-content: center; }
+  </style>
+</head>
+"""
+head_header = head_header.replace('</head>', css_to_add)
+head_header = head_header.replace('style="position:absolute;left:-9999px;z-index:999;padding:1em;background-color:white;color:black;opacity:0;" onfocus="this.style.left=\'50%\';this.style.opacity=\'1\'" onblur="this.style.left=\'-9999px\';this.style.opacity=\'0\'"', '')
 
-<script src="../assets/js/main.min.js" defer></script>
-</body>
-</html>
+
+final_text = head_header + main_content + footer_content
+
+with open('services/noorani-qaida.html', 'w', encoding='utf-8') as f:
+    f.write(final_text)
+
+print("Noorani Qaida page updated successfully.")

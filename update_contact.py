@@ -1,35 +1,27 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+import re
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Qurana Academy | Online Quran Classes Qatar</title>
-  <meta name="description" content="Contact our female Quran teachers for online Quran classes in Qatar. Book up to 3 trial classes and start your one-to-one learning journey today.">
-  <meta name="keywords" content="Online Quran Classes Qatar, Female Quran Teacher Qatar, Contact Female Quran Teacher, Online Quran Academy Qatar, Book Quran Trial Class">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Qurana Academy">
-  <link rel="canonical" href="https://www.qurana-academy.com/contact.html">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Contact Qurana Academy | Online Quran Classes Qatar">
-  <meta property="og:description" content="Contact our female Quran teachers for online Quran classes in Qatar. Book up to 3 trial classes and start your one-to-one learning journey today.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.qurana-academy.com/contact.html">
-  <meta property="og:locale" content="en_QA">
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="preload" href="assets/css/style.min.css" as="style">
-  <link rel="stylesheet" href="assets/css/style.min.css">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Schema -->
-  <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Qurana Academy", "url": "https://[YOUR-PRODUCTION-DOMAIN.COM]", "logo": "https://[YOUR-PRODUCTION-DOMAIN.COM]/assets/images/logo.png"}
-  </script>
+filepath = 'contact.html'
 
+with open(filepath, 'r', encoding='utf-8') as f:
+    text = f.read()
+
+# Update SEO and Meta (Head)
+header_end = text.find('</header>') + 9
+footer_start = text.find('<footer')
+
+head_header = text[:header_end]
+main_content = text[header_end:footer_start]
+footer_content = text[footer_start:]
+
+# Replace Meta Data
+head_header = re.sub(r'<title>.*?</title>', '<title>Contact Qurana Academy | Online Quran Classes Qatar</title>', head_header)
+head_header = re.sub(r'<meta name="description"\s+content=".*?">', '<meta name="description" content="Contact our female Quran teachers for online Quran classes in Qatar. Book up to 3 trial classes and start your one-to-one learning journey today.">', head_header)
+head_header = re.sub(r'<meta name="keywords"\s+content=".*?">', '<meta name="keywords" content="Online Quran Classes Qatar, Female Quran Teacher Qatar, Contact Female Quran Teacher, Online Quran Academy Qatar, Book Quran Trial Class">', head_header)
+head_header = re.sub(r'<meta property="og:title" content=".*?">', '<meta property="og:title" content="Contact Qurana Academy | Online Quran Classes Qatar">', head_header)
+head_header = re.sub(r'<meta property="og:description"\s+content=".*?">', '<meta property="og:description" content="Contact our female Quran teachers for online Quran classes in Qatar. Book up to 3 trial classes and start your one-to-one learning journey today.">', head_header)
+
+# Scoped CSS for the Contact Page Redesign
+scoped_css = """
   <style>
     /* Scoped CSS for Contact Editorial Page */
     .skip-link { position:absolute;left:-9999px;z-index:999;padding:1em;background-color:white;color:black;opacity:0; }
@@ -137,92 +129,47 @@
     .c-faq-item p { margin: 16px 0 0 0; color: var(--c-text-light); line-height: 1.7; font-size: 1.05rem; }
     
     .modal-submit-btn { width: 100%; justify-content: center; }
-
-    /* Hero Buttons Update */
-    .c-hero-btns { display: flex; flex-direction: row; gap: 20px; justify-content: flex-start; margin-top: 40px; }
-    .c-hero-btns a { flex: 1; text-align: center; display: flex; justify-content: center; align-items: center; }
-    @media(max-width: 600px) {
-      .c-hero-btns { flex-direction: column; gap: 16px; }
-      .c-hero-btns a { width: 100%; }
-    }
   </style>
 </head>
+"""
+head_header = head_header.replace('</head>', scoped_css)
+head_header = head_header.replace('style="position:absolute;left:-9999px;z-index:999;padding:1em;background-color:white;color:black;opacity:0;" onfocus="this.style.left=\'50%\';this.style.opacity=\'1\'" onblur="this.style.left=\'-9999px\';this.style.opacity=\'0\'"', '')
 
-
-<body>
-<a href="#main" class="skip-link" >Skip to main content</a>
-
-
-  <!-- Top Info Bar -->
-  <div class="top-info-bar">
-    <div class="container">
-      <div class="top-info-bar-left">
-        <div class="info-item"><span class="info-icon">📞</span> <a href="tel:0331627691">0331-627-691</a></div>
-        <div class="info-item"><span class="info-icon">📞</span> <a href="tel:03306923454">0330-692-3454</a></div>
-        <div class="info-item"><span class="info-icon">✉</span> <a
-            href="mailto:info@qurana-academy.com">info@qurana-academy.com</a></div>
-      </div>
-      <div class="top-info-bar-right">
-        <div class="info-item"><span class="info-icon">🕐</span> Sat-Thu, 8AM-10PM</div>
-      </div>
-    </div>
-  </div>
-  <!-- Header -->
-  <header class="header" role="banner">
-    <div class="container">
-      <a href="index.html" class="logo" aria-label="Qurana Academy Home">
-        <div class="logo-icon">📖</div>
-        Qurana<span>Academy</span>
-      </a>
-      <nav class="nav-links" role="navigation" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <div class="has-dropdown">
-          <a href="#">Services ▾</a>
-          <div class="dropdown">
-            <a href="services/noorani-qaida.html">Noorani Qaida</a>
-            <a href="services/quran-tafseer.html">Quran Tafseer</a>
-            <a href="services/quran-memorization.html">Quran Memorization</a>
-            <a href="services/six-kalima.html">Six Kalima</a>
-          </div>
-        </div>
-        <div class="has-dropdown">
-          <a href="#">Tutors ▾</a>
-          <div class="dropdown">
-            <a href="tutors/female-tutors.html">Female Tutors</a>
-          </div>
-        </div>
-        <a href="pricing.html">Pricing</a>
-        <a href="contact.html" class="active">Contact</a>
-        <a href="#" class="btn btn-primary nav-cta" data-modal="open">Book Free Trial</a>
-      </nav>
-      <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </header>
-  <div class="mobile-overlay"></div>
-
+# Main content redesign
+new_main_content = """
+<main id="main">
 
   <!-- Section 1: Premium Hero -->
-  <section class="c-section c-bg-emerald" style="padding-top: 120px; padding-bottom: 100px; display: flex; align-items: center; min-height: 50vh;">
-    <div class="c-container" style="max-width: 800px; margin: 0 auto; width: 100%;">
-      <div class="c-arabic" style="text-align:left; color: var(--c-gold);">﴿ فَاسْأَلُوا أَهْلَ الذِّكْرِ إِن كُنتُمْ لَا تَعْلَمُونَ ﴾</div>
-      <div class="c-arabic-translation" style="text-align:left; color: rgba(255,255,255,0.8);">"So ask the people of knowledge if you do not know."<br>(Quran 16:43)</div>
-      <h1 class="c-h1" style="text-align:left; color: var(--c-white);">Let's Begin Your Quran Journey</h1>
-      <p class="c-p" style="text-align:left; max-width:100%; color: rgba(255,255,255,0.9);">Contact our academy to discuss your child's learning needs and book up to 3 trial classes with our verified female Quran teachers.</p>
-      
-      <ul class="c-trust-bullets" style="justify-content:flex-start; gap:16px 24px;">
-        <li style="color: var(--c-white);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to 3 Trial Classes</li>
-        <li style="color: var(--c-white);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> Female Quran Teachers</li>
-        <li style="color: var(--c-white);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> One-to-One Classes</li>
-        <li style="color: var(--c-white);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> Flexible Timings</li>
-        <li style="color: var(--c-white);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> Qatar Friendly</li>
-      </ul>
+  <section class="c-section c-bg-offwhite" style="padding-top: 100px;">
+    <div class="c-container c-split" style="align-items:center;">
+      <div class="c-split-text">
+        <div class="c-arabic" style="text-align:left;">﴿ فَاسْأَلُوا أَهْلَ الذِّكْرِ إِن كُنتُمْ لَا تَعْلَمُونَ ﴾</div>
+        <div class="c-arabic-translation" style="text-align:left;">"So ask the people of knowledge if you do not know."<br>(Quran 16:43)</div>
+        <h1 class="c-h1" style="text-align:left;">Let's Begin Your Quran Journey</h1>
+        <p class="c-p" style="text-align:left; max-width:100%;">Contact our academy to discuss your child's learning needs and book up to 3 trial classes with our verified female Quran teachers.</p>
+        
+        <ul class="c-trust-bullets" style="justify-content:flex-start; gap:16px 24px;">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to 3 Trial Classes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> Female Quran Teachers</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> One-to-One Classes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> Flexible Timings</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> Qatar Friendly</li>
+        </ul>
 
-      <div class="c-hero-btns">
-        <a href="#contact-form" class="c-btn-primary" style="background: var(--c-gold); color: var(--c-emerald);" aria-label="Book Up to 3 Trial Classes">Book Up to 3 Trial Classes</a>
-        <a href="https://wa.me/974XXXXXXXX" class="c-btn-outline" style="border-color: var(--c-white); color: var(--c-white);" target="_blank" rel="noopener" aria-label="Talk on WhatsApp">Talk on WhatsApp</a>
+        <div class="c-btns" style="justify-content:flex-start;">
+          <a href="#contact-form" class="c-btn-primary" aria-label="Book Up to 3 Trial Classes">Book Up to 3 Trial Classes</a>
+          <a href="https://wa.me/974XXXXXXXX" class="c-btn-outline" target="_blank" rel="noopener" aria-label="Talk on WhatsApp">Talk on WhatsApp</a>
+        </div>
+      </div>
+      <div class="c-split-img">
+        <!-- Elegant Islamic geometric SVG -->
+        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="200" cy="200" r="180" stroke="var(--c-emerald)" stroke-width="1" stroke-dasharray="4 4" opacity="0.3"/>
+          <circle cx="200" cy="200" r="140" stroke="var(--c-gold)" stroke-width="1" opacity="0.5"/>
+          <path d="M200 40 L235 165 L360 200 L235 235 L200 360 L165 235 L40 200 L165 165 Z" fill="var(--c-emerald)" opacity="0.05" stroke="var(--c-emerald)" stroke-width="2"/>
+          <path d="M200 80 L220 180 L320 200 L220 220 L200 320 L180 220 L80 200 L180 180 Z" fill="var(--c-gold)" opacity="0.1" stroke="var(--c-gold)" stroke-width="1"/>
+          <path d="M160 160 L240 160 L240 240 L160 240 Z" transform="rotate(45 200 200)" stroke="var(--c-emerald)" stroke-width="2"/>
+        </svg>
       </div>
     </div>
   </section>
@@ -454,98 +401,16 @@
   </section>
 
 </main>
-<footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Qurana Academy</h4>
-          <p>The leading online Quran academy serving students across Qatar with certified tutors and personalized
-            1-on-1 classes.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="Instagram">in</a>
-            <a href="#" aria-label="YouTube">▶</a>
-            <a href="#" aria-label="Twitter">𝕏</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Our Courses</h4>
-          <a href="services/noorani-qaida.html">Noorani Qaida</a>
-          <a href="services/quran-tafseer.html">Quran Tafseer</a>
-          <a href="services/quran-memorization.html">Quran Memorization</a>
-          <a href="services/six-kalima.html">Six Kalima Online</a>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <a href="about.html">About Us</a>
-          <a href="pricing.html">Pricing Plans</a>
-          <a href="blog/">Blog</a>
-          <a href="faq.html">FAQs</a>
-          <a href="reviews.html">Student Reviews</a>
-          <a href="contact.html">Contact Us</a>
-        </div>
-        <div class="footer-col">
-          <h4>Contact Info</h4>
-          <p>Email: info@qurana-academy.com</p>
-          <p>WhatsApp: +974 XXXX XXXX</p>
-          <p>Available: Sat–Thu, 8AM–10PM</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Qurana Academy. All Rights Reserved.</p>
-        <div class="footer-locations">
-          <span>Serving:</span>
-          <span>Doha</span> · <span>Al Wakrah</span> · <span>Al Khor</span> · <span>Lusail</span> · <span>All
-            Qatar</span>
-        </div>
-      </div>
-    </div>
-  </footer>
+"""
 
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/974XXXXXXXX" class="whatsapp-float" target="_blank" rel="noopener"
-    aria-label="Chat on WhatsApp">💬</a>
+footer_content = footer_content.replace('Book Free Trial', 'Book Up to 3 Trial Classes')
+footer_content = footer_content.replace('Start Your Free Trial', 'Start Your Up to 3 Trial Classes')
+footer_content = footer_content.replace('Experience a free Quran class', 'Experience up to 3 trial classes')
+footer_content = footer_content.replace('style="width:100%;justify-content:center"', 'class="btn btn-primary modal-submit-btn"')
 
-  <!-- Back to Top -->
-  <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
+final_content = head_header + new_main_content + footer_content
 
-  <!-- Free Trial Modal -->
-  <div class="modal-overlay">
-    <div class="modal">
-      <button class="modal-close" aria-label="Close modal">✕</button>
-      <h2>Start Your Up to 3 Trial Classes</h2>
-      <p>Experience up to 3 trial classes with our certified tutor. No commitment required.</p>
-      <form action="thank-you.html" id="trialForm">
-        <div class="form-group">
-          <input aria-label="Your Full Name" type="text" name="name" placeholder="Your Full Name" required>
-          <div class="form-error">Please enter your name</div>
-        </div>
-        <div class="form-group">
-          <input aria-label="Email Address" type="email" name="email" placeholder="Email Address" required>
-          <div class="form-error">Please enter a valid email</div>
-        </div>
-        <div class="form-group">
-          <input aria-label="WhatsApp Number (e.g. +974...)" type="tel" name="phone" placeholder="WhatsApp Number (e.g. +974...)" required>
-          <div class="form-error">Please enter your phone number</div>
-        </div>
-        <div class="form-group">
-          <select name="course" required>
-            <option value="">Select Course</option>
-            <option value="noorani-qaida">Noorani Qaida</option>
-            <option value="quran-reading">Quran Reading with Tajweed</option>
-            <option value="memorization">Quran Memorization (Hifz)</option>
-            <option value="tafseer">Quran Tafseer</option>
-            <option value="six-kalima">Six Kalima</option>
-          </select>
-          <div class="form-error">Please select a course</div>
-        </div>
-        <button type="submit" class="btn btn-primary" class="btn btn-primary modal-submit-btn">Book Up to 3 Trial Classes
-          →</button>
-      </form>
-    </div>
-  </div>
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(final_content)
 
-  <script src="assets/js/main.min.js" defer></script>
-</body>
-
-</html>
+print("contact.html successfully transformed into premium editorial trust page.")

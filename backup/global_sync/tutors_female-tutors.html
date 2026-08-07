@@ -127,34 +127,6 @@
     /* Modal fix */
     .modal-submit-btn { width: 100%; justify-content: center; }
   </style>
-
-  <style>
-    .tutors-hero-image,
-    .tutors-founder-image {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      margin-inline: auto;
-    }
-    .tutors-hero-image { max-width: 540px; }
-    .tutors-founder-image { max-width: 460px; }
-    
-    @media (max-width: 768px) {
-      .tutors-hero-image {
-        max-width: 300px;
-        margin: 2rem auto 0;
-      }
-      .tutors-founder-image {
-        max-width: 300px;
-        margin: 0 auto 2rem;
-      }
-      #t-founder-split {
-        display: flex;
-        flex-direction: column-reverse;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -208,8 +180,7 @@
     </div>
   </div>
 </header>
-  <div class="mobile-overlay"></div>
-
+<main id="main">
 
   <!-- Section 1: Premium Hero -->
   <section class="t-section t-bg-offwhite">
@@ -234,15 +205,20 @@
         </div>
       </div>
       <div class="t-split-img">
-        <img
-          src="../assets/images/female-quran-teacher-hijab-hero.webp"
-          alt="Female Quran Teacher conducting one-to-one online Quran class"
-          class="tutors-hero-image"
-          loading="eager"
-          decoding="async"
-          width="520"
-          height="650"
-        />
+        <!-- Elegant Faceless SVG Illustration -->
+        <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Geometric Background Motif -->
+          <circle cx="200" cy="250" r="150" stroke="var(--t-gold)" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+          <path d="M200 80 L280 140 L280 230 L200 290 L120 230 L120 140 Z" stroke="var(--t-emerald)" stroke-width="1" opacity="0.2"/>
+          <path d="M200 130 L250 170 L250 230 L200 270 L150 230 L150 170 Z" stroke="var(--t-gold)" stroke-width="1" opacity="0.3"/>
+          
+          <!-- Silhouette (No face, Hijab/Abaya profile) -->
+          <path d="M200 140 C170 140 145 165 145 195 C145 220 155 240 170 255 C160 270 130 320 120 380 C110 440 130 480 200 480 C270 480 290 440 280 380 C270 320 240 270 230 255 C245 240 255 220 255 195 C255 165 230 140 200 140 Z" fill="var(--t-emerald)" opacity="0.9"/>
+          <!-- Quran outline -->
+          <path d="M170 350 L200 370 L230 350 L230 330 L200 350 L170 330 Z" fill="var(--t-gold)"/>
+          <path d="M170 350 L170 365 L200 385 L200 370 Z" fill="var(--t-gold)" opacity="0.7"/>
+          <path d="M230 350 L230 365 L200 385 L200 370 Z" fill="var(--t-gold)" opacity="0.7"/>
+        </svg>
       </div>
     </div>
   </section>
@@ -279,7 +255,7 @@
 
   <!-- Section 3: Meet Our Founder -->
   <section class="t-section t-bg-offwhite">
-    <div class="t-container t-split" id="t-founder-split">
+    <div class="t-container t-split">
       <div class="t-split-text">
         <h2>Meet Our Founder</h2>
         <div class="t-split-divider"></div>
@@ -294,15 +270,11 @@
         </ul>
       </div>
       <div class="t-split-img">
-        <img
-          src="../assets/images/female-quran-teacher-hijab-hero.webp"
-          alt="Founder and Female Quran Teacher Shagufta Rehan"
-          class="tutors-founder-image"
-          loading="lazy"
-          decoding="async"
-          width="520"
-          height="650"
-        />
+        <!-- Elegant Star SVG Motif -->
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="opacity:0.9;">
+          <path d="M100 10 L120 70 L190 70 L130 110 L150 180 L100 140 L50 180 L70 110 L10 70 L80 70 Z" fill="var(--t-emerald)"/>
+          <path d="M100 25 L115 75 L170 75 L125 105 L140 160 L100 125 L60 160 L75 105 L30 75 L85 75 Z" fill="var(--t-gold)" opacity="0.8"/>
+        </svg>
       </div>
     </div>
   </section>

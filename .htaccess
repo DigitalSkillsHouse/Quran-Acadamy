@@ -1,3 +1,22 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# 1. 301 Redirect index.html to /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP
+RewriteRule ^index\.html$ / [R=301,L]
+
+# 2. 301 Redirect old .html URLs to extensionless URLs
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
+RewriteRule ^([^.]+)\.html$ /$1 [R=301,L]
+
+# 3. Serve extensionless URLs by finding the corresponding .html file
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L,QSA]
+</IfModule>
+
 
 # Block access to development and sensitive files
 <FilesMatch "\.(py|md|txt|log|sh|bat)$">

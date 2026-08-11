@@ -1,0 +1,55 @@
+# =========================================================
+# AL-TAJWEED UL QURAN ACADEMY — DEVELOPMENT / LOCAL FILES
+# =========================================================
+
+# Backups — NEVER deploy historical backups
+backup/
+
+# Python automation / audit scripts
+*.py
+
+# Local audit / verification reports
+audit_results.txt
+batch16_pre_fix_inventory.txt
+batch16_final_qa_report.md
+batch16_final_qa_report.txt
+critical_findings_verification.md
+critical_findings_verification.txt
+production_live_audit_report.md
+production_live_audit_report.txt
+FINAL_LIVE_VERIFICATION_REPORT.md
+FINAL_LIVE_VERIFICATION_REPORT.txt
+
+# Temporary Antigravity / AI-generated task artifacts
+scratch/
+walkthrough.md
+implementation_plan.md
+task.md
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE local files
+.vscode/
+.idea/
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# =========================================================
+# DO NOT IGNORE PRODUCTION WEBSITE FILES
+# =========================================================
+#
+# HTML, CSS, JS, SVG, images, sitemap.xml, robots.txt,
+# .htaccess and other actual website assets must remain
+# trackable by Git.
+#
+# =========================================================

@@ -1,0 +1,11 @@
+
+# Block access to development and sensitive files
+<FilesMatch "\.(py|md|txt|log|sh|bat)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to specific directories
+RedirectMatch 404 ^/\.git(/|$)
+RedirectMatch 404 ^/backup(/|$)
+RedirectMatch 404 ^/scratch(/|$)

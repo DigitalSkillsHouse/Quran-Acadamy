@@ -1,0 +1,21 @@
+Contact: mailto:info@[YOUR-PRODUCTION-DOMAIN.COM]
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, ar
+
+# Security Recommendations for Server Configuration (Not hardcoded in HTML)
+# Please apply these HTTP headers on your production server:
+#
+# 1. Content-Security-Policy (CSP)
+#    Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted.cdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;
+#
+# 2. Permissions-Policy
+#    Permissions-Policy: geolocation=(), microphone=(), camera=()
+#
+# 3. Referrer-Policy
+#    Referrer-Policy: strict-origin-when-cross-origin
+#
+# 4. X-Frame-Options
+#    X-Frame-Options: SAMEORIGIN
+#
+# 5. Strict-Transport-Security (HSTS)
+#    Strict-Transport-Security: max-age=63072000; includeSubDomains; preload

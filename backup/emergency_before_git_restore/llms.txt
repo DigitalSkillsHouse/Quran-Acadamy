@@ -1,0 +1,22 @@
+Title: Qurana Academy
+Description: Best online Quran classes in Qatar with certified female tutors for kids and adults.
+Base URL: https://[YOUR-PRODUCTION-DOMAIN.COM]
+
+# About Qurana Academy
+Learn Quran online with certified female tutors. 1-on-1 classes for kids & adults. Free trial available across Qatar (Doha, Al Wakrah, Al Khor, Lusail).
+
+## Key Pages
+- [Home](/)
+- [About Us](/about.html)
+- [Pricing](/pricing.html)
+- [Contact](/contact.html)
+- [FAQ](/faq.html)
+
+## Services and Courses
+- [Noorani Qaida](/services/noorani-qaida.html): Learn Arabic alphabets and Quran reading basics.
+- [Quran Tafseer](/services/quran-tafseer.html): Deep understanding of Quranic interpretation.
+- [Quran Memorization (Hifz)](/services/quran-memorization.html): Structured Hifz program with daily revision.
+- [Six Kalima Online](/services/six-kalima.html): Learn the six fundamental Islamic declarations.
+
+## Tutors
+- [Female Tutors](/tutors/female-tutors.html): Certified Ijazah female tutors available for women and girls in Qatar.

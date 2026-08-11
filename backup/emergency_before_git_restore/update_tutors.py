@@ -1,32 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Female Quran Teacher Qatar | Online One-to-One Tutors</title>
-  <meta name="description" content="Learn with a verified female Quran teacher online in Qatar. One-to-one classes, 15+ years experience, patient methodology, and up to 3 trial classes.">
-  <meta name="keywords" content="Female Quran Teacher Qatar, Female Quran Tutors, Online Female Quran Teacher, One-to-One Quran Classes, Online Quran Classes Qatar">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Qurana Academy">
-  <link rel="canonical" href="https://www.qurana-academy.com/tutors/female-tutors.html">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Female Quran Teacher Qatar | Online One-to-One Tutors">
-  <meta property="og:description" content="Learn with a verified female Quran teacher online in Qatar. One-to-one classes, patient methodology, and up to 3 trial classes.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.qurana-academy.com/tutors/female-tutors.html">
-  <meta property="og:locale" content="en_QA">
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="../assets/css/style.min.css" as="style">
-  <link rel="stylesheet" href="../assets/css/style.min.css">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Schema -->
-  <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Qurana Academy", "url": "https://[YOUR-PRODUCTION-DOMAIN.COM]", "logo": "https://[YOUR-PRODUCTION-DOMAIN.COM]/assets/images/logo.png"}
-  </script>
+import re
 
+filepath = 'tutors/female-tutors.html'
+
+with open(filepath, 'r', encoding='utf-8') as f:
+    text = f.read()
+
+# 1. Update SEO and Meta (Head)
+header_end = text.find('</header>') + 9
+footer_start = text.find('<footer')
+
+head_header = text[:header_end]
+main_content = text[header_end:footer_start]
+footer_content = text[footer_start:]
+
+# Replace Meta Data
+head_header = re.sub(r'<title>.*?</title>', '<title>Female Quran Teacher Qatar | Online One-to-One Tutors</title>', head_header)
+head_header = re.sub(r'<meta name="description" content=".*?">', '<meta name="description" content="Learn with a verified female Quran teacher online in Qatar. One-to-one classes, 15+ years experience, patient methodology, and up to 3 trial classes.">', head_header)
+head_header = re.sub(r'<meta name="keywords" content=".*?">', '<meta name="keywords" content="Female Quran Teacher Qatar, Female Quran Tutors, Online Female Quran Teacher, One-to-One Quran Classes, Online Quran Classes Qatar">', head_header)
+head_header = re.sub(r'<meta property="og:title" content=".*?">', '<meta property="og:title" content="Female Quran Teacher Qatar | Online One-to-One Tutors">', head_header)
+head_header = re.sub(r'<meta property="og:description" content=".*?">', '<meta property="og:description" content="Learn with a verified female Quran teacher online in Qatar. One-to-one classes, patient methodology, and up to 3 trial classes.">', head_header)
+head_header = re.sub(r'<meta property="og:url" content=".*?">', '<meta property="og:url" content="https://www.qurana-academy.com/tutors/female-tutors.html">', head_header)
+
+# Scoped CSS for the Tutors Page Redesign
+scoped_css = """
   <style>
     /* Scoped CSS for Female Tutors Editorial Page */
     .skip-link { position:absolute;left:-9999px;z-index:999;padding:1em;background-color:white;color:black;opacity:0; }
@@ -127,89 +123,14 @@
     /* Modal fix */
     .modal-submit-btn { width: 100%; justify-content: center; }
   </style>
-
-  <style>
-    .tutors-hero-image,
-    .tutors-founder-image {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      margin-inline: auto;
-    }
-    .tutors-hero-image { max-width: 540px; }
-    .tutors-founder-image { max-width: 460px; }
-    
-    @media (max-width: 768px) {
-      .tutors-hero-image {
-        max-width: 300px;
-        margin: 2rem auto 0;
-      }
-      .tutors-founder-image {
-        max-width: 300px;
-        margin: 0 auto 2rem;
-      }
-      #t-founder-split {
-        display: flex;
-        flex-direction: column-reverse;
-      }
-    }
-  </style>
 </head>
+"""
+head_header = head_header.replace('</head>', scoped_css)
+head_header = head_header.replace('style="position:absolute;left:-9999px;z-index:999;padding:1em;background-color:white;color:black;opacity:0;" onfocus="this.style.left=\'50%\';this.style.opacity=\'1\'" onblur="this.style.left=\'-9999px\';this.style.opacity=\'0\'"', '')
 
-<body>
-<a href="#main" class="skip-link" >Skip to main content</a>
-
-
-<!-- Top Info Bar -->
-<div class="top-info-bar">
-  <div class="container">
-    <div class="top-info-bar-left">
-      <div class="info-item"><span class="info-icon">📞</span> <a href="tel:0331627691">0331-627-691</a></div>
-      <div class="info-item"><span class="info-icon">📞</span> <a href="tel:03306923454">0330-692-3454</a></div>
-      <div class="info-item"><span class="info-icon">✉</span> <a href="mailto:info@qurana-academy.com">info@qurana-academy.com</a></div>
-    </div>
-    <div class="top-info-bar-right">
-      <div class="info-item"><span class="info-icon">🕐</span> Sat-Thu, 8AM-10PM</div>
-    </div>
-  </div>
-</div>
-<!-- Header -->
-<header class="header" role="banner">
-  <div class="container">
-    <a href="../index.html" class="logo" aria-label="Qurana Academy Home">
-      <div class="logo-icon">📖</div>
-      Qurana<span>Academy</span>
-    </a>
-    <nav class="nav-links" role="navigation" aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <div class="has-dropdown">
-        <a href="#">Services ▾</a>
-        <div class="dropdown">
-          <a href="../services/noorani-qaida.html">Noorani Qaida</a>
-          <a href="../services/quran-tafseer.html">Quran Tafseer</a>
-          <a href="../services/quran-memorization.html">Quran Memorization</a>
-          <a href="../services/six-kalima.html">Six Kalima Online</a>
-        </div>
-      </div>
-      <div class="has-dropdown">
-        <a href="#">Tutors ▾</a>
-        <div class="dropdown">
-          <a href="female-tutors.html">Female Tutors</a>
-        </div>
-      </div>
-      <a href="../pricing.html">Pricing</a>
-      <a href="../contact.html">Contact</a>
-      <a href="#" class="btn btn-primary nav-cta" data-modal="open">Book Free Trial</a>
-    </nav>
-    <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</header>
-  <div class="mobile-overlay"></div>
-
+# Main content redesign
+new_main_content = """
+<main id="main">
 
   <!-- Section 1: Premium Hero -->
   <section class="t-section t-bg-offwhite">
@@ -234,15 +155,20 @@
         </div>
       </div>
       <div class="t-split-img">
-        <img
-          src="../assets/images/female-quran-teacher-hijab-hero.webp"
-          alt="Female Quran Teacher conducting one-to-one online Quran class"
-          class="tutors-hero-image"
-          loading="eager"
-          decoding="async"
-          width="520"
-          height="650"
-        />
+        <!-- Elegant Faceless SVG Illustration -->
+        <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Geometric Background Motif -->
+          <circle cx="200" cy="250" r="150" stroke="var(--t-gold)" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+          <path d="M200 80 L280 140 L280 230 L200 290 L120 230 L120 140 Z" stroke="var(--t-emerald)" stroke-width="1" opacity="0.2"/>
+          <path d="M200 130 L250 170 L250 230 L200 270 L150 230 L150 170 Z" stroke="var(--t-gold)" stroke-width="1" opacity="0.3"/>
+          
+          <!-- Silhouette (No face, Hijab/Abaya profile) -->
+          <path d="M200 140 C170 140 145 165 145 195 C145 220 155 240 170 255 C160 270 130 320 120 380 C110 440 130 480 200 480 C270 480 290 440 280 380 C270 320 240 270 230 255 C245 240 255 220 255 195 C255 165 230 140 200 140 Z" fill="var(--t-emerald)" opacity="0.9"/>
+          <!-- Quran outline -->
+          <path d="M170 350 L200 370 L230 350 L230 330 L200 350 L170 330 Z" fill="var(--t-gold)"/>
+          <path d="M170 350 L170 365 L200 385 L200 370 Z" fill="var(--t-gold)" opacity="0.7"/>
+          <path d="M230 350 L230 365 L200 385 L200 370 Z" fill="var(--t-gold)" opacity="0.7"/>
+        </svg>
       </div>
     </div>
   </section>
@@ -279,7 +205,7 @@
 
   <!-- Section 3: Meet Our Founder -->
   <section class="t-section t-bg-offwhite">
-    <div class="t-container t-split" id="t-founder-split">
+    <div class="t-container t-split">
       <div class="t-split-text">
         <h2>Meet Our Founder</h2>
         <div class="t-split-divider"></div>
@@ -294,15 +220,11 @@
         </ul>
       </div>
       <div class="t-split-img">
-        <img
-          src="../assets/images/female-quran-teacher-hijab-hero.webp"
-          alt="Founder and Female Quran Teacher Shagufta Rehan"
-          class="tutors-founder-image"
-          loading="lazy"
-          decoding="async"
-          width="520"
-          height="650"
-        />
+        <!-- Elegant Star SVG Motif -->
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="opacity:0.9;">
+          <path d="M100 10 L120 70 L190 70 L130 110 L150 180 L100 140 L50 180 L70 110 L10 70 L80 70 Z" fill="var(--t-emerald)"/>
+          <path d="M100 25 L115 75 L170 75 L125 105 L140 160 L100 125 L60 160 L75 105 L30 75 L85 75 Z" fill="var(--t-gold)" opacity="0.8"/>
+        </svg>
       </div>
     </div>
   </section>
@@ -542,109 +464,16 @@
   </section>
 
 </main>
-<footer class="footer-v2" role="contentinfo">
-    <div class="container">
-      <div class="footer-v2-grid">
-        <!-- Column 1 -->
-        <div class="footer-v2-col">
-          <h4>Al-Tajweed ul Quran Academy</h4>
-          <p>A premium online Quran academy providing authentic, one-to-one Islamic education with verified female teachers. We are dedicated to nurturing a deep love for the Holy Quran in every student.</p>
-        </div>
-        
-        <!-- Column 2 -->
-        <div class="footer-v2-col">
-          <h4>Quick Links</h4>
-          <ul class="footer-v2-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../about.html">About</a></li>
-            <li><a href="../services/noorani-qaida.html">Courses</a></li>
-            <li><a href="../tutors/female-tutors.html">Female Tutors</a></li>
-            <li><a href="../faq.html">FAQ</a></li>
-            <li><a href="../pricing.html">Pricing</a></li>
-            <li><a href="../contact.html">Contact</a></li>
-          </ul>
-        </div>
+"""
 
-        <!-- Column 3 -->
-        <div class="footer-v2-col">
-          <h4>Courses</h4>
-          <ul class="footer-v2-links">
-            <li><a href="../services/noorani-qaida.html">Noorani Qaida</a></li>
-            <li><a href="../services/quran-tafseer.html">Quran Reading</a></li>
-            <li><a href="../services/quran-tafseer.html">Tajweed</a></li>
-            <li><a href="../services/quran-memorization.html">Hifz</a></li>
-            <li><a href="../services/six-kalima.html">Islamic Studies</a></li>
-          </ul>
-        </div>
+# Rebuild File
+footer_content = footer_content.replace('Book Free Trial', 'Book Up to 3 Trial Classes')
+footer_content = footer_content.replace('Start Your Free Trial', 'Start Your Up to 3 Trial Classes')
+footer_content = footer_content.replace('Experience a free Noorani Qaida class', 'Experience up to 3 trial classes')
 
-        <!-- Column 4 -->
-        <div class="footer-v2-col">
-          <h4>Contact Us</h4>
-          <ul class="footer-v2-contact">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <a href="tel:03116227691">0311 6227691</a></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <a href="tel:03306923454">0330 6923454</a></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Urdu, English</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Serving Qatar & Worldwide</li>
-          </ul>
-          <div class="footer-v2-social">
-            <a href="https://wa.me/974XXXXXXXX" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="footer-v2-bottom">
-        <p>&copy; 2026 Al-Tajweed ul Quran Academy. All Rights Reserved.</p>
-        <ul class="footer-v2-legal">
-          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="../terms-and-conditions.html">Terms & Conditions</a></li>
-          <li><a href="../refund-policy.html">Refund Policy</a></li>
-          <li><a href="../sitemap.xml">Sitemap</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+final_content = head_header + new_main_content + footer_content
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/974XXXXXXXX" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(final_content)
 
-<!-- Back to Top -->
-<a href="#" class="back-to-top" aria-label="Back to top">↑</a>
-
-<!-- Free Trial Modal -->
-<div class="modal-overlay">
-  <div class="modal">
-    <button class="modal-close" aria-label="Close modal">✕</button>
-    <h2>Start Your Up to 3 Trial Classes</h2>
-    <p>Experience a free Quran class with our certified tutor. No commitment required.</p>
-    <form action="thank-you.html" id="trialForm">
-      <div class="form-group">
-        <input aria-label="Your Full Name" type="text" name="name" placeholder="Your Full Name" required>
-        <div class="form-error">Please enter your name</div>
-      </div>
-      <div class="form-group">
-        <input aria-label="Email Address" type="email" name="email" placeholder="Email Address" required>
-        <div class="form-error">Please enter a valid email</div>
-      </div>
-      <div class="form-group">
-        <input aria-label="WhatsApp Number (e.g. +974...)" type="tel" name="phone" placeholder="WhatsApp Number (e.g. +974...)" required>
-        <div class="form-error">Please enter your phone number</div>
-      </div>
-      <div class="form-group">
-        <select name="course" required>
-          <option value="">Select Course</option>
-          <option value="noorani-qaida">Noorani Qaida</option>
-          <option value="quran-reading">Quran Reading with Tajweed</option>
-          <option value="memorization">Quran Memorization (Hifz)</option>
-          <option value="tafseer">Quran Tafseer</option>
-          <option value="six-kalima">Six Kalima</option>
-        </select>
-        <div class="form-error">Please select a course</div>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Book Up to 3 Trial Classes →</button>
-    </form>
-  </div>
-</div>
-
-<script src="../assets/js/main.min.js" defer></script>
-</body>
-</html>
+print("female-tutors.html successfully transformed into premium editorial trust page.")

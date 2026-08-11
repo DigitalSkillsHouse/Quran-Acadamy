@@ -1,0 +1,74 @@
+{
+  "404.html": {
+    "changed": false,
+    "message": "Empty file"
+  },
+  "about.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "contact.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "faq.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "free-trial.html": {
+    "changed": false,
+    "message": "Empty file"
+  },
+  "index.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "pricing.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "privacy-policy.html": {
+    "changed": false,
+    "message": "Empty file"
+  },
+  "refund-policy.html": {
+    "changed": false,
+    "message": "Empty file"
+  },
+  "reviews.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "terms-and-conditions.html": {
+    "changed": false,
+    "message": "Empty file"
+  },
+  "thank-you.html": {
+    "changed": false,
+    "message": "Empty file"
+  },
+  "blog\\index.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "services\\noorani-qaida.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "services\\quran-memorization.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "services\\quran-tafseer.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "services\\six-kalima.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  },
+  "tutors\\female-tutors.html": {
+    "changed": true,
+    "message": "Successfully modified and validated."
+  }
+}

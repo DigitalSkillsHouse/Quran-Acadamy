@@ -28,6 +28,7 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Qurana Academy", "url": "https://[YOUR-PRODUCTION-DOMAIN.COM]", "logo": "https://[YOUR-PRODUCTION-DOMAIN.COM]/assets/images/logo.png"}
   </script>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body>
 <a href="#main" class="skip-link" style="position:absolute;left:-9999px;z-index:999;padding:1em;background-color:white;color:black;opacity:0;" onfocus="this.style.left='50%';this.style.opacity='1'" onblur="this.style.left='-9999px';this.style.opacity='0'">Skip to main content</a>
@@ -48,38 +49,37 @@
 </div>
 <!-- Header -->
 <header class="header" role="banner">
-  <div class="container">
-    <a href="index.html" class="logo" aria-label="Qurana Academy Home">
-      <div class="logo-icon">📖</div>
-      Qurana<span>Academy</span>
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="Al-Tajweed ul Quran Academy Home">
+      <img src="assets/images/logo.svg" alt="Al-Tajweed ul Quran Academy" width="280" height="56" style="height: 56px; width: auto; max-width: 100%; object-fit: contain;">
     </a>
-    <nav class="nav-links" role="navigation" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
-      <div class="has-dropdown">
-        <a href="#">Services ▾</a>
-        <div class="dropdown">
-          <a href="services/noorani-qaida.html">Noorani Qaida</a>
-          <a href="services/quran-tafseer.html">Quran Tafseer</a>
-          <a href="services/quran-memorization.html">Quran Memorization</a>
-          <a href="services/six-kalima.html">Six Kalima Online</a>
+      <nav class="nav-links" role="navigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <div class="has-dropdown">
+          <a href="#">Services <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="services/noorani-qaida.html">Noorani Qaida</a>
+            <a href="services/quran-tafseer.html">Quran Tafseer</a>
+            <a href="services/quran-memorization.html">Quran Memorization</a>
+            <a href="services/six-kalima.html">Six Kalima Online</a>
+          </div>
         </div>
-      </div>
-      <div class="has-dropdown">
-        <a href="#">Tutors ▾</a>
-        <div class="dropdown">
-          <a href="tutors/female-tutors.html">Female Tutors</a>
+        <div class="has-dropdown">
+          <a href="#">Tutors <span class="nav-arrow">▾</span></a>
+          <div class="dropdown">
+            <a href="tutors/female-tutors.html">Female Tutors</a>
+          </div>
         </div>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+        <a href="#" class="btn btn-primary nav-cta" data-modal="open">Book Up to 3 Trial Classes</a>
+      </nav>
+      <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
       </div>
-      <a href="pricing.html">Pricing</a>
-      <a href="contact.html">Contact</a>
-      <a href="#" class="btn btn-primary nav-cta" data-modal="open">Book Up to 3 Trial Classes</a>
-    </nav>
-    <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
-      <span></span><span></span><span></span>
     </div>
-  </div>
-</header>
+  </header>
   <div class="mobile-overlay"></div>
 
 <main id="main">
@@ -285,30 +285,7 @@
     }
   </style>
 
-  <header class="legal-hero">
-    <div class="container">
-      <h1>Terms & Conditions</h1>
-      <p class="hero-subtitle">Please read these terms carefully before enrolling in our online Quran classes. They explain how our academy operates and what students and parents can expect.</p>
-      
-      <div class="legal-ayah">
-        <div class="legal-ayah-arabic" dir="rtl">﴿ وَأَوْفُوا بِالْعَهْدِ ۖ إِنَّ الْعَهْدَ كَانَ مَسْؤُولًا ﴾</div>
-        <div class="legal-ayah-translation">"Fulfil every commitment. Surely every commitment will be questioned."</div>
-        <div class="legal-ayah-ref">(Quran 17:34)</div>
-      </div>
-
-      <ul class="trust-bullets">
-        <li>Up to 3 Trial Classes</li>
-        <li>Female Quran Teachers</li>
-        <li>One-to-One Classes</li>
-        <li>Flexible Scheduling</li>
-      </ul>
-
-      <div class="hero-buttons">
-        <a href="#" class="btn-emerald" data-modal="open">Book Up to 3 Trial Classes</a>
-        <a href="https://wa.me/974XXXXXXXX" class="btn-outline-white" target="_blank" rel="noopener">Talk on WhatsApp</a>
-      </div>
-    </div>
-  </header>
+  
 
   <article class="legal-content">
     <div class="container">
@@ -407,7 +384,9 @@
       <div class="footer-v2-grid">
         <!-- Column 1 -->
         <div class="footer-v2-col">
-          <h4>Al-Tajweed ul Quran Academy</h4>
+          <a href="index.html" aria-label="Home" class="footer-logo">
+            <img src="assets/images/logo-white.svg" alt="Al-Tajweed ul Quran Academy" width="240" height="48" style="height: 48px; width: auto; max-width: 100%; margin-bottom: 16px;">
+          </a>
           <p>A premium online Quran academy providing authentic, one-to-one Islamic education with verified female teachers. We are dedicated to nurturing a deep love for the Holy Quran in every student.</p>
         </div>
         

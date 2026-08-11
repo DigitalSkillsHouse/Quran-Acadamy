@@ -3931,3 +3931,446 @@ button {
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(15,81,50,.15);
 }
+
+
+/* ============================================================
+   BATCH 15: LUXURY HEADER & FOOTER REDESIGN (QATAR ELITE)
+   ============================================================ */
+
+/* 1. TOP ANNOUNCEMENT BAR */
+.top-info-bar {
+  background: linear-gradient(135deg, #1A1A1A 0%, #0A3A2A 100%) !important;
+  color: #F8F9FA !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
+}
+.top-info-bar a {
+  color: #F8F9FA !important;
+  transition: color 0.3s ease !important;
+}
+.top-info-bar a:hover {
+  color: #D4AF37 !important;
+}
+.info-icon {
+  color: #D4AF37 !important;
+  margin-right: 6px !important;
+}
+
+/* 2. MAIN NAVIGATION HEADER */
+.header {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 10px 30px rgba(10, 58, 42, 0.08) !important;
+  padding: 16px 0 !important;
+  border-bottom: 2px solid #D4AF37 !important;
+  transition: all 0.4s ease !important;
+}
+.nav-links a:not(.nav-cta) {
+  font-weight: 600 !important;
+  color: #1A1A1A !important;
+  padding: 8px 16px !important;
+  transition: color 0.3s ease !important;
+  position: relative !important;
+}
+.nav-links a:not(.nav-cta):hover {
+  color: #0A3A2A !important;
+}
+.nav-links a:not(.nav-cta)::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  width: 0% !important;
+  height: 2px !important;
+  background-color: #D4AF37 !important;
+  transition: all 0.3s ease !important;
+  transform: translateX(-50%) !important;
+}
+.nav-links a:not(.nav-cta):hover::after {
+  width: 80% !important;
+}
+
+/* DROPDOWN ANIMATIONS */
+.dropdown {
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+  border-top: 3px solid #D4AF37 !important;
+  padding: 10px 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(15px) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  display: block !important;
+  pointer-events: none !important;
+}
+.has-dropdown:hover .dropdown {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+.dropdown a {
+  padding: 12px 24px !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid rgba(0,0,0,0.03) !important;
+  transition: all 0.3s ease !important;
+}
+.dropdown a:hover {
+  background: rgba(212, 175, 55, 0.05) !important;
+  color: #0A3A2A !important;
+  padding-left: 28px !important;
+}
+.dropdown a::after {
+  display: none !important;
+}
+
+/* 3. CTA BUTTON */
+.nav-cta {
+  background: linear-gradient(135deg, #0A3A2A 0%, #0d543c 100%) !important;
+  color: #D4AF37 !important;
+  border: 1px solid #D4AF37 !important;
+  font-weight: 700 !important;
+  padding: 12px 28px !important;
+  border-radius: 30px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2) !important;
+  transition: all 0.4s ease !important;
+}
+.nav-cta:hover {
+  background: #D4AF37 !important;
+  color: #0A3A2A !important;
+  border-color: #0A3A2A !important;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 4. FOOTER UPGRADE */
+.footer-v2 {
+  background-color: #0A3A2A !important;
+  background-image: radial-gradient(circle at top right, rgba(212, 175, 55, 0.05) 0%, transparent 40%) !important;
+  color: #F8F9FA !important;
+  padding: 80px 0 20px 0 !important;
+  border-top: 4px solid #D4AF37 !important;
+}
+.footer-v2-grid {
+  gap: 60px !important;
+}
+.footer-v2-col h4 {
+  color: #D4AF37 !important;
+  font-family: 'Amiri', serif !important;
+  font-size: 1.4rem !important;
+  margin-bottom: 24px !important;
+  position: relative !important;
+  padding-bottom: 12px !important;
+}
+.footer-v2-col h4::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 50px !important;
+  height: 2px !important;
+  background-color: #D4AF37 !important;
+}
+.footer-v2-col p {
+  color: #DDE2DF !important;
+  line-height: 1.8 !important;
+  font-size: 0.95rem !important;
+}
+.footer-v2-links li a, .footer-v2-contact li a, .footer-v2-contact li {
+  color: #DDE2DF !important;
+  font-size: 0.95rem !important;
+  transition: all 0.3s ease !important;
+}
+.footer-v2-links li a:hover, .footer-v2-contact li a:hover {
+  color: #D4AF37 !important;
+  transform: translateX(5px) !important;
+  display: inline-block !important;
+}
+.footer-v2-contact li svg {
+  color: #D4AF37 !important;
+  margin-right: 12px !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+.footer-v2-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+  margin-top: 60px !important;
+  padding-top: 24px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+.footer-v2-bottom p {
+  color: #A0B0A8 !important;
+  font-size: 0.85rem !important;
+  margin: 0 !important;
+}
+.footer-v2-legal {
+  display: flex !important;
+  gap: 20px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.footer-v2-legal li a {
+  color: #A0B0A8 !important;
+  font-size: 0.85rem !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+.footer-v2-legal li a:hover {
+  color: #D4AF37 !important;
+}
+@media (max-width: 768px) {
+  .footer-v2-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 16px !important;
+  }
+}
+
+
+/* ============================================================
+   BATCH 16: GLOBAL SPACING & HERO ALIGNMENT FIX
+   ============================================================ */
+
+/* Prevent hero sections from hiding under the fixed header */
+.hero,
+.course-v2-hero,
+.page-hero,
+.main-hero,
+main > section:first-of-type,
+body > section:first-of-type {
+  padding-top: 180px !important;
+  padding-bottom: 80px !important;
+}
+
+/* General section breathing room (Consistency) */
+.section,
+.course-v2-overview,
+.course-v2-curriculum,
+.course-v2-outcomes,
+.course-v2-methodology,
+.course-v2-trust,
+.course-v2-faq,
+.final-cta {
+  padding: 80px 0 !important;
+}
+
+/* Ensure mobile feels spacious too but proportional */
+@media (max-width: 768px) {
+  .hero,
+  .course-v2-hero,
+  .page-hero,
+  .main-hero,
+  main > section:first-of-type,
+  body > section:first-of-type {
+    padding-top: 150px !important;
+    padding-bottom: 60px !important;
+  }
+  .section,
+  .course-v2-overview,
+  .course-v2-curriculum,
+  .course-v2-outcomes,
+  .course-v2-methodology,
+  .course-v2-trust,
+  .course-v2-faq,
+  .final-cta {
+    padding: 60px 0 !important;
+  }
+}
+
+
+/* ============================================================
+   BATCH 17: HEADER HEIGHT, ALIGNMENT & CTA TEXT FIX
+   ============================================================ */
+
+/* 1. Reduce Top Info Bar */
+.top-info-bar {
+  padding: 6px 0 !important; /* Reduced from 12px */
+  border-bottom: none !important; /* Removed harsh gold line */
+}
+
+/* 2. Reduce Header Height & Fix Alignment */
+.header {
+  padding: 10px 0 !important; /* Reduced from 16px */
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important; /* Much softer border */
+}
+
+.header .container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* Adjust the logo size to prevent height stretching */
+.brand-logo {
+  height: 42px !important; 
+  width: auto !important;
+  margin-bottom: 0 !important;
+  display: block !important;
+}
+
+/* 3. CTA Button - Single line text, sleek padding */
+.nav-cta {
+  padding: 10px 22px !important;
+  font-size: 0.85rem !important;
+  white-space: nowrap !important; /* Forces text to one line */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+/* 4. Global Hero Spacing Fix (Matching new reduced header height) */
+.hero,
+.course-v2-hero,
+.page-hero,
+.main-hero,
+main > section:first-of-type,
+body > section:first-of-type {
+  padding-top: 130px !important; /* Reduced from 180px */
+}
+
+@media (max-width: 768px) {
+  .hero,
+  .course-v2-hero,
+  .page-hero,
+  .main-hero,
+  main > section:first-of-type,
+  body > section:first-of-type {
+    padding-top: 110px !important; /* Reduced from 150px */
+  }
+}
+
+
+/* ============================================================
+   BATCH 18: NAV VERTICAL ALIGNMENT FIX
+   ============================================================ */
+
+/* 1. Flexbox Centering for the Navigation Wrapper */
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+/* 2. Normalize children elements & remove conflicting margins */
+.nav-links > a:not(.nav-cta),
+.nav-links > .has-dropdown,
+.nav-links > .has-dropdown > a {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* 3. Dropdown Icon & Text Alignment */
+/* Making the anchor tags inline-flex vertically centers all text and symbols (like ▾) inside them automatically */
+.nav-links a:not(.nav-cta) {
+  line-height: 1.2 !important;
+  vertical-align: middle !important;
+}
+
+/* 4. Ensure CTA button isn't misaligned by stray margins */
+.nav-cta {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  vertical-align: middle !important;
+}
+
+
+/* ============================================================
+   BATCH 19: DEFINITIVE NAV VERTICAL ALIGNMENT FIX
+   ============================================================ */
+
+/* 1. Flex Container & Baseline Fix */
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 2. Structure Normalization */
+.nav-links > a,
+.nav-links > .has-dropdown {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+/* 3. Normalize Line-Height & Padding on Anchors */
+.nav-links > a:not(.nav-cta),
+.nav-links > .has-dropdown > a {
+  display: flex !important;
+  align-items: center !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  padding: 8px 12px !important; /* Uniform padding */
+  box-sizing: border-box !important;
+}
+
+/* 4. Dropdown Arrow Alignment */
+/* By using display: flex on the anchor, text and the dropdown arrow are perfectly centered vertically on the same axis */
+.nav-links > .has-dropdown > a {
+  justify-content: center !important;
+  gap: 4px !important;
+}
+
+/* Ensure the CTA stays perfectly centered */
+.nav-links .nav-cta {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* ============================================================
+   BATCH 20: CTA BUTTON PROPORTIONS FIX
+   ============================================================ */
+
+/* Restore the squished CTA button padding that was overridden by Batch 19 */
+.nav-links .nav-cta,
+.nav-cta {
+  padding: 12px 28px !important;
+  height: auto !important;
+  align-self: center !important; /* Prevent stretching */
+  white-space: nowrap !important; /* Keep text strictly on one line */
+  font-size: 0.85rem !important;
+  line-height: 1.2 !important;
+  border-radius: 30px !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* ============================================================
+   BATCH 22: NAV DROPDOWN ARROW WRAPPER FIX
+   ============================================================ */
+
+/* Explicitly wrap the dropdown arrow in a flex container so it NEVER breaks baseline */
+.nav-arrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 4px !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
+
+/* Ensure the parent anchor stays a clean flex row */
+.nav-links > .has-dropdown > a {
+  display: flex !important;
+  align-items: center !important;
+  white-space: nowrap !important; /* Prevent text wrapping */
+}

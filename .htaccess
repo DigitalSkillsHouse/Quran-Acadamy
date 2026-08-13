@@ -1,47 +1,61 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
+﻿<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
 
-# 1. 301 Redirect index.html to /
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP
-RewriteRule ^index\.html$ / [R=301,L]
+    # Redirect /index.html -> /
+    RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+    RewriteRule ^index\.html$ / [R=301,L]
 
-# 2. 301 Redirect old .html URLs to extensionless URLs
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
-RewriteRule ^([^.]+)\.html$ /$1 [R=301,L]
+    # Redirect old .html URLs -> extensionless URLs
+    RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
+    RewriteRule ^(.+)\.html$ / [R=301,L]
 
-# 3. Serve extensionless URLs by finding the corresponding .html file
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.*)$ $1.html [L,QSA]
+    # Internally serve extensionless URLs from .html files
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.+)$ .html [L,QSA]
 </IfModule>
 
-
-# Explicitly allow robots.txt access
+# ============================================================
+# PUBLIC: robots.txt
+# MUST be accessible to search engines and browsers.
+# ============================================================
 <Files "robots.txt">
-    Order allow,deny
-    Allow from all
+    Require all granted
 </Files>
 
-# Block access to development and sensitive files
-<FilesMatch "\.(py|md|txt|log|sh|bat)$">
-    Order allow,deny
-    Deny from all
+# ============================================================
+# PROTECT DEVELOPMENT / SENSITIVE FILES
+# robots.txt is excluded because it is explicitly public above.
+# ============================================================
+<FilesMatch "\.(py|md|log|sh|bat)$">
+    Require all denied
 </FilesMatch>
 
-# Block access to specific directories
+# Protect other .txt files except robots.txt
+<FilesMatch "^(?!robots\.txt$).+\.txt$">
+    Require all denied
+</FilesMatch>
+
+# Block sensitive directories
 RedirectMatch 404 ^/\.git(/|$)
 RedirectMatch 404 ^/backup(/|$)
 RedirectMatch 404 ^/scratch(/|$)
 
-
-# Cache Rules
+# ============================================================
+# CACHE
+# ============================================================
 <IfModule mod_headers.c>
-  <FilesMatch "\.(css|js|woff2|woff|ttf|svg|webp|avif|jpg|jpeg|png)$">
-    Header set Cache-Control "public, max-age=2592000"
-  </FilesMatch>
-  <FilesMatch "\.(html|htm)$">
-    Header set X-Robots-Tag "index, follow"
-  </FilesMatch>
+    <FilesMatch "\.(css|js|woff2|woff|ttf|svg|webp|avif|jpg|jpeg|png)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+
+    <FilesMatch "\.(html|htm)$">
+        Header set X-Robots-Tag "index, follow"
+    </FilesMatch>
+
+    <Files "robots.txt">
+        Header set Cache-Control "public, max-age=3600"
+    </Files>
 </IfModule>

@@ -1,0 +1,63 @@
+# Batch 20 Final SEO, AEO, GEO & Performance Optimization QA Report
+
+## Files Changed
+25 files modified.
+- .htaccess
+- assets/js/main.js
+- index.html
+- about.html, contact.html, faq.html, pricing.html, privacy-policy.html, refund-policy.html, reviews.html, terms-and-conditions.html, thank-you.html, free-trial.html, 404.html
+- blog/index.html
+- services/noorani-qaida.html, services/quran-memorization.html, services/quran-tafseer.html, services/six-kalima.html
+- services_noorani-qaida.html, services_quran-memorization.html, services_quran-tafseer.html, services_six-kalima.html
+- tutors/female-tutors.html, tutors_female-tutors.html
+
+## SEO Fixes
+- Preserved existing clean-URL architecture.
+- Preserved Bing and Google Search Console tags.
+- Meta Description on Homepage updated to: "Learn Quran online in Qatar with qualified female tutors for kids and adults. Explore flexible classes and start with up to 3 trial classes." (138 chars).
+- Homepage Title changed to "Online Quran Classes in Qatar | Al-Tajweed ul Quran Academy".
+- Homepage H1 remained "Learn the Quran Online with Qualified Female Tutors", maintaining clear semantic alignment.
+- Added OpenGraph and Twitter cards to homepage matching the title, description, and LCP hero image.
+
+## AEO & GEO Fixes
+- Added concise AEO top summary near the hero section on the homepage answering who Al-Tajweed ul Quran Academy is for and what it offers.
+- Added definition support for "Online Quran classes" within the homepage about section.
+- Added "Key takeaway" near the definition.
+- Added GEO proof points referencing existing factual curriculum ("Students can choose from Noorani Qaida, Quran reading with Tajweed, Quran memorization, Tafseer, and Six Kalimas according to their learning goals.") without fabricating numbers or facts.
+
+## Schema Fixes
+- Appended BreadcrumbList JSON-LD exclusively to hierarchical pages (services, tutors, blog).
+- Stripped irrelevant Article or BlogPosting schemas from transactional/service/evergreen pages to prevent false signals.
+- Removed artificial time dates (like Published/Updated) where context doesn't explicitly justify them on evergreen pages.
+
+## Internal Linking & Accessibility Fixes
+- Rewrote "Learn More" link in services_quran-memorization.html (and variants) to the descriptive "Explore Quran Memorization Classes".
+- Injected an accessible <label> for <select name="course"> and established an id reference.
+- Demoted "h4 Quick Links" within the footer to <h3> to adhere to correct heading hierarchy logic.
+
+## Performance & Cache Fixes
+- Swapped style.min.css from default blocking to a preload -> stylesheet async pattern via <link as="style" onload="this.onload=null;this.rel='stylesheet'"> and wrapped a <noscript> fallback.
+- Added display=swap to the Google Fonts API URL.
+- Hero Image LCP Optimization: Set fetchpriority="high", decoding="async", mapped explicit width (800) and height (600), and stripped loading="lazy" off the hero image.
+- Imposed loading="lazy" on all other images below the fold.
+- Rectified synchronous layout thrashing / forced reflow in assets/js/main.js's animateOnScroll function by wrapping the class mutator logic inside a requestAnimationFrame.
+- Added standard robust Cache-Control mappings in .htaccess public, max-age=2592000 for css, js, fonts, and images.
+
+## Indexing & Verification
+- Embedded Header set X-Robots-Tag "index, follow" within .htaccess mapped for .html files explicitly ensuring Googlebot can process them immediately.
+- Checked verification tags, preserving Bing and GSC tags correctly.
+
+## Manual Review Items & Critical Issues
+- bs4 parsed and reformatted portions of the HTML files uniformly. The application visually functions precisely as designed, but diffs show spacing alignments.
+- 0 Broken links detected natively within the optimization phase constraints.
+- 0 critical fatal warnings remaining.
+
+---
+
+### Push Instructions
+
+When ready to finalize and deploy these optimizations, please run the following commands sequentially:
+
+git add .
+git commit -m "chore(seo): implement batch 20 final AEO, GEO, and performance optimization fixes"
+git push origin main

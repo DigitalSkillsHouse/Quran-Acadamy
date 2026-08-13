@@ -172,7 +172,7 @@
     document.querySelectorAll('.fade-in,.fade-in-left,.fade-in-right').forEach(function(el){
       const rect = el.getBoundingClientRect();
       if(rect.top < window.innerHeight - 60){
-        el.classList.add('visible');
+        requestAnimationFrame(() => el.classList.add('visible'));
       }
     });
   }

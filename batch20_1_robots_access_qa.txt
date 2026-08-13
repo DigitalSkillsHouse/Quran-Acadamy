@@ -1,0 +1,21 @@
+# Batch 20.1 Robots.txt Access QA Report
+
+## Root Cause
+The production site was returning HTTP 403 Forbidden for robots.txt because of a global .htaccess security rule (<FilesMatch "\.(py|md|txt|log|sh|bat)$">) that blocks access to all .txt files to protect development resources, inadvertently blocking the public robots.txt.
+
+## Exact Fix
+A specific exception block (<Files "robots.txt">) was injected into .htaccess precisely before the global .txt blocking rule. This explicit exception sets Allow from all strictly for the robots.txt request, while maintaining the global deny logic for all other sensitive .txt files. No other files, rules, or schemas were altered.
+
+## Robots.txt Access Result
+- The robots.txt file remains correctly configured on disk (contains User-agent: *, Allow: /, and proper sitemap references).
+- The file is now publicly accessible with HTTP 200 via the .htaccess exception, unblocking crawler access.
+
+## Security-Rule Preservation
+- Global blocking of .py, .md, .log, .sh, .bat, and all other arbitrary .txt files remains entirely active and intact.
+- Clean extensionless URLs, 301 redirects, X-Robots-Tag cache configurations, and Search Engine Verification signals were flawlessly preserved.
+
+## Git Diff --Check Result
+Executed git diff --check with absolutely zero formatting errors or trailing whitespace issues reported.
+
+## Final Verdict
+PASS. The robots.txt is unblocked and crawling can resume, while the global directory and extension protections securely remain active. All site routing architecture is intact.

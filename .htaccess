@@ -18,6 +18,12 @@ RewriteRule ^(.*)$ $1.html [L,QSA]
 </IfModule>
 
 
+# Explicitly allow robots.txt access
+<Files "robots.txt">
+    Order allow,deny
+    Allow from all
+</Files>
+
 # Block access to development and sensitive files
 <FilesMatch "\.(py|md|txt|log|sh|bat)$">
     Order allow,deny

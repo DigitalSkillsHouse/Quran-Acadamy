@@ -29,7 +29,9 @@
     hamburger?.classList.toggle('active');
     navLinks?.classList.toggle('open');
     overlay?.classList.toggle('show');
-    document.body.style.overflow = navLinks?.classList.contains('open') ? 'hidden' : '';
+    const isOpen = navLinks?.classList.contains('open');
+    if (hamburger) hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   }
   hamburger?.addEventListener('click', toggleNav);
   overlay?.addEventListener('click', toggleNav);

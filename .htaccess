@@ -1,4 +1,4 @@
-﻿<IfModule mod_rewrite.c>
+<IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 
@@ -8,13 +8,13 @@
 
     # Redirect old .html URLs -> extensionless URLs
     RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
-    RewriteRule ^(.+)\.html$ / [R=301,L]
+    RewriteRule ^(.+)\.html$ /$1 [R=301,L]
 
     # Internally serve extensionless URLs from .html files
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME}.html -f
-    RewriteRule ^(.+)$ .html [L,QSA]
+    RewriteRule ^(.+)$ $1.html [L,QSA]
 </IfModule>
 
 # ============================================================

@@ -208,3 +208,75 @@
   });
 
 })();
+
+// --- LEADS TRACKING SYSTEM ---
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Form tracking
+    const forms = document.querySelectorAll('form[action="thank-you.html"]');
+    forms.forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button[type="submit"]') || form.querySelector('input[type="submit"]');
+            if (btn) btn.disabled = true;
+
+            try {
+                const formData = new FormData(form);
+                const data = {
+                    event_type: 'FORM_SUBMISSION',
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    course: formData.get('course'),
+                    message: formData.get('message') || '',
+                    source_url: window.location.href,
+                    referrer: document.referrer
+                };
+
+                const res = await fetch('/api/track.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (res.ok && result.success) {
+                    window.location.href = form.action || 'thank-you.html';
+                } else {
+                    alert('Submission failed. Please try again or contact us via WhatsApp.');
+                    if (btn) btn.disabled = false;
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Connection error. Please try again or contact us via WhatsApp.');
+                if (btn) btn.disabled = false;
+            }
+        });
+    });
+
+    // 2. Phone / WhatsApp Click Tracking
+    const trackClick = (eventType) => {
+        const data = {
+            event_type: eventType,
+            source_url: window.location.href,
+            referrer: document.referrer
+        };
+        // Use sendBeacon so it doesn't block navigation
+        if (navigator.sendBeacon) {
+            navigator.sendBeacon('/api/track.php', JSON.stringify(data));
+        } else {
+            fetch('/api/track.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data),
+                keepalive: true
+            }).catch(() => {});
+        }
+    };
+
+    document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+        a.addEventListener('click', () => trackClick('PHONE_CLICK'));
+    });
+
+    document.querySelectorAll('a[href^="https://wa.me"], a[href^="https://api.whatsapp.com"]').forEach(a => {
+        a.addEventListener('click', () => trackClick('WHATSAPP_CLICK'));
+    });
+});

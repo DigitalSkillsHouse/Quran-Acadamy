@@ -59,3 +59,9 @@ RedirectMatch 404 ^/scratch(/|$)
         Header set Cache-Control "public, max-age=3600"
     </Files>
 </IfModule>
+
+
+# Protect SQLite Database
+<FilesMatch "\.sqlite$">
+    Require all denied
+</FilesMatch>

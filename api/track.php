@@ -75,5 +75,5 @@ if (appendLead($leadData)) {
 } else {
     error_log("JSONL Insert Error: Failed to write to leads.jsonl");
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Server error']);
+    echo json_encode(['success' => false, 'error' => 'storage_write_failed']);
 }

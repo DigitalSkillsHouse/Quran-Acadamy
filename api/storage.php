@@ -1,19 +1,45 @@
 <?php
-define('STORAGE_DIR', __DIR__ . '/data');
+function resolveStoragePaths() {
+    $candidates = [
+        __DIR__ . '/data',                 // Preferred
+        __DIR__,                           // Fallback 1: api directory itself
+        __DIR__ . '/../admin/data',        // Fallback 2: admin data directory
+        sys_get_temp_dir() . '/quran_academy_data' // Fallback 3: System temp
+    ];
+    foreach ($candidates as $dir) {
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0755, true);
+        }
+        if (is_dir($dir) && is_writable($dir)) {
+            $test_file = $dir . '/.write_test';
+            if (@file_put_contents($test_file, 'test') !== false) {
+                @unlink($test_file);
+                return $dir;
+            }
+        }
+    }
+    return null;
+}
+
+$active_storage = resolveStoragePaths();
+if ($active_storage) {
+    define('STORAGE_DIR', $active_storage);
+} else {
+    define('STORAGE_DIR', __DIR__ . '/data'); // Failsafe default
+}
+
 define('LEADS_FILE', STORAGE_DIR . '/leads.jsonl');
 define('USERS_FILE', STORAGE_DIR . '/users.json');
 
 function initStorage() {
-    if (!is_dir(STORAGE_DIR)) {
-        if (!mkdir(STORAGE_DIR, 0755, true)) {
-            return false;
-        }
+    if (!is_dir(STORAGE_DIR) || !is_writable(STORAGE_DIR)) {
+        return false;
     }
     if (!file_exists(LEADS_FILE)) {
-        touch(LEADS_FILE);
+        @touch(LEADS_FILE);
     }
     if (!file_exists(USERS_FILE)) {
-        file_put_contents(USERS_FILE, json_encode([]));
+        @file_put_contents(USERS_FILE, json_encode([]));
     }
     return true;
 }

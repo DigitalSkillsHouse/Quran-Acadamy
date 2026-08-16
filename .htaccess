@@ -62,9 +62,9 @@ RedirectMatch 404 ^/scratch(/|$)
 
 
 # Protect Storage Files
-<FilesMatch "\.(sqlite|jsonl)$">
+<FilesMatch "^(users\.json|leads\.jsonl)$|\.(sqlite|jsonl)$">
     Require all denied
 </FilesMatch>
 
-# Block access to data directory (protects users.json and leads.jsonl)
-RedirectMatch 404 ^/api/data(/|$)
+# Block access to data directories
+RedirectMatch 404 ^/(api/data|admin/data)(/|$)

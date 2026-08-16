@@ -10,6 +10,9 @@
     RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
     RewriteRule ^(.+)\.html$ /$1 [R=301,L]
 
+    # Redirect nested thank-you.html from subdirectories (e.g. /services/thank-you.html) to root
+    RewriteRule ^.*/thank-you$ /thank-you [R=301,L]
+
     # Internally serve extensionless URLs from .html files
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f

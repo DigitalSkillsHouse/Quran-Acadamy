@@ -1,37 +1,14 @@
 <?php
-function resolveStoragePaths() {
-    $candidates = [
-        __DIR__ . '/data',                 // Preferred
-        __DIR__,                           // Fallback 1: api directory itself
-        __DIR__ . '/../admin/data',        // Fallback 2: admin data directory
-        sys_get_temp_dir() . '/quran_academy_data' // Fallback 3: System temp
-    ];
-    foreach ($candidates as $dir) {
-        if (!is_dir($dir)) {
-            @mkdir($dir, 0755, true);
-        }
-        if (is_dir($dir) && is_writable($dir)) {
-            $test_file = $dir . '/.write_test';
-            if (@file_put_contents($test_file, 'test') !== false) {
-                @unlink($test_file);
-                return $dir;
-            }
-        }
-    }
-    return null;
-}
-
-$active_storage = resolveStoragePaths();
-if ($active_storage) {
-    define('STORAGE_DIR', $active_storage);
-} else {
-    define('STORAGE_DIR', __DIR__ . '/data'); // Failsafe default
-}
-
+define('STORAGE_DIR', __DIR__ . '/data');
 define('LEADS_FILE', STORAGE_DIR . '/leads.jsonl');
 define('USERS_FILE', STORAGE_DIR . '/users.json');
 
 function initStorage() {
+    if (!is_dir(STORAGE_DIR)) {
+        if (!@mkdir(STORAGE_DIR, 0755, true)) {
+            return false;
+        }
+    }
     if (!is_dir(STORAGE_DIR) || !is_writable(STORAGE_DIR)) {
         return false;
     }
@@ -46,14 +23,15 @@ function initStorage() {
 
 function appendLead($data) {
     if (!initStorage()) return false;
-    $fp = fopen(LEADS_FILE, 'a');
+    $fp = @fopen(LEADS_FILE, 'a');
     if (!$fp) return false;
     if (flock($fp, LOCK_EX)) {
         $json = json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n";
-        fwrite($fp, $json);
+        $written = fwrite($fp, $json);
+        $flushed = fflush($fp);
         flock($fp, LOCK_UN);
-        fclose($fp);
-        return true;
+        $closed = fclose($fp);
+        return ($written !== false && $flushed && $closed);
     }
     fclose($fp);
     return false;

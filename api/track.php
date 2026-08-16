@@ -18,7 +18,7 @@ $valid_events = ['FORM_SUBMISSION', 'PHONE_CLICK', 'WHATSAPP_CLICK'];
 
 if (!in_array($event_type, $valid_events)) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'error' => 'Invalid event type']);
+    echo json_encode(['success' => false, 'error' => 'invalid_event_type']);
     exit;
 }
 
@@ -28,7 +28,7 @@ $ip_address = $_SERVER['REMOTE_ADDR'] ?? '';
 $recent_count = getRecentLeadCountByIp($ip_address);
 if ($recent_count > 20) {
     http_response_code(429);
-    echo json_encode(['success' => false, 'error' => 'Too many requests. Please try again later.']);
+    echo json_encode(['success' => false, 'error' => 'rate_limited']);
     exit;
 }
 
@@ -71,9 +71,14 @@ $leadData = [
 
 if (appendLead($leadData)) {
     http_response_code(201);
-    echo json_encode(['success' => true, 'id' => $id]);
+    echo json_encode([
+        'success' => true,
+        'stored' => true,
+        'event_type' => $event_type,
+        'storage_ready' => true
+    ]);
 } else {
     error_log("JSONL Insert Error: Failed to write to leads.jsonl");
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'storage_write_failed']);
+    echo json_encode(['success' => false, 'error' => 'storage_unavailable']);
 }

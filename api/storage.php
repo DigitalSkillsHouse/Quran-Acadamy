@@ -102,6 +102,57 @@ function updateLead($id, $updates) {
     return false;
 }
 
+function softDeleteLead($id) {
+    return updateLead($id, ['deleted_at' => date('Y-m-d H:i:s')]);
+}
+
+function restoreLead($id) {
+    return updateLead($id, ['deleted_at' => null]);
+}
+
+function permanentlyDeleteLead($id) {
+    if (!file_exists(LEADS_FILE)) return false;
+    $tmpFile = LEADS_FILE . '.tmp.' . bin2hex(random_bytes(8));
+    $fp = fopen(LEADS_FILE, 'r+');
+    if (!$fp) return false;
+    if (flock($fp, LOCK_EX)) {
+        $out = fopen($tmpFile, 'w');
+        if (!$out) {
+            flock($fp, LOCK_UN);
+            fclose($fp);
+            return false;
+        }
+        $deleted = false;
+        while (($line = fgets($fp)) !== false) {
+            $line = trim($line);
+            if (empty($line)) continue;
+            $data = json_decode($line, true);
+            if (is_array($data) && isset($data['id']) && (string)$data['id'] === (string)$id) {
+                $deleted = true;
+                continue; // Skip writing this line to permanently delete it
+            }
+            if (is_array($data)) {
+                fwrite($out, json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+            }
+        }
+        fflush($out);
+        fclose($out);
+        if ($deleted) {
+            if (!rename($tmpFile, LEADS_FILE)) {
+                unlink($tmpFile);
+                $deleted = false;
+            }
+        } else {
+            unlink($tmpFile);
+        }
+        flock($fp, LOCK_UN);
+        fclose($fp);
+        return $deleted;
+    }
+    fclose($fp);
+    return false;
+}
+
 function getRecentLeadCountByIp($ip) {
     if (!file_exists(LEADS_FILE)) return 0;
     $count = 0;

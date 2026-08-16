@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once __DIR__ . '/db.php';
 
 // Generate CSRF token if not exists
 if (empty($_SESSION['csrf_token'])) {

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../api/auth.php';
+require_once __DIR__ . '/../api/storage.php';
 
 if (isLoggedIn()) {
     header('Location: /admin/index.php');
@@ -11,17 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
     
-    $stmt = $pdo->prepare("SELECT id, password_hash FROM users WHERE username = ?");
-    $stmt->execute([$username]);
-    $user = $stmt->fetch();
+    $user = getUser($username);
     
     if ($user && password_verify($password, $user['password_hash'])) {
         session_regenerate_id(true);
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['admin_user_id'] = $user['id'];
         
-        $pdo->prepare("UPDATE users SET last_login = ? WHERE id = ?")
-            ->execute([date('Y-m-d H:i:s'), $user['id']]);
+        updateLastLogin($user['id']);
             
         header('Location: /admin/index.php');
         exit;

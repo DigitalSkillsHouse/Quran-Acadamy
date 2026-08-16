@@ -1,40 +1,43 @@
 <?php
 require_once __DIR__ . '/../api/auth.php';
+require_once __DIR__ . '/../api/storage.php';
 requireAuth();
 
 $type_filter = $_GET['type'] ?? 'all';
 $status_filter = $_GET['status'] ?? 'all';
 
-$query = "SELECT * FROM leads WHERE 1=1";
-$params = [];
+$all_leads = getLeads();
 
-if ($type_filter !== 'all') {
-    $query .= " AND event_type = ?";
-    $params[] = $type_filter;
-}
-if ($status_filter !== 'all') {
-    $query .= " AND status = ?";
-    $params[] = $status_filter;
-}
-
-$query .= " ORDER BY created_at DESC LIMIT 500";
-$stmt = $pdo->prepare($query);
-$stmt->execute($params);
-$leads = $stmt->fetchAll();
-
-// Stats
+$leads = [];
 $stats = [
-    'TOTAL' => $pdo->query("SELECT COUNT(*) FROM leads")->fetchColumn(),
-    'FORMS' => $pdo->query("SELECT COUNT(*) FROM leads WHERE event_type = 'FORM_SUBMISSION'")->fetchColumn(),
-    'PHONE' => $pdo->query("SELECT COUNT(*) FROM leads WHERE event_type = 'PHONE_CLICK'")->fetchColumn(),
-    'WHATSAPP' => $pdo->query("SELECT COUNT(*) FROM leads WHERE event_type = 'WHATSAPP_CLICK'")->fetchColumn(),
-    'NEW' => $pdo->query("SELECT COUNT(*) FROM leads WHERE status = 'new'")->fetchColumn(),
+    'TOTAL' => 0,
+    'FORMS' => 0,
+    'PHONE' => 0,
+    'WHATSAPP' => 0,
+    'NEW' => 0,
 ];
+
+foreach ($all_leads as $l) {
+    // Stats calculation
+    $stats['TOTAL']++;
+    if (($l['event_type'] ?? '') === 'FORM_SUBMISSION') $stats['FORMS']++;
+    if (($l['event_type'] ?? '') === 'PHONE_CLICK') $stats['PHONE']++;
+    if (($l['event_type'] ?? '') === 'WHATSAPP_CLICK') $stats['WHATSAPP']++;
+    if (($l['status'] ?? '') === 'new') $stats['NEW']++;
+
+    // Filtering
+    if ($type_filter !== 'all' && ($l['event_type'] ?? '') !== $type_filter) continue;
+    if ($status_filter !== 'all' && ($l['status'] ?? '') !== $status_filter) continue;
+
+    $leads[] = $l;
+}
+
+// Slice limit to 500
+$leads = array_slice($leads, 0, 500);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta name="csrf-token" content="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
     <title>Dashboard - Quran Academy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -104,7 +107,6 @@ $stats = [
         </form>
     </div>
     
-
     <div style="background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
         <h3>Change Password</h3>
         <div style="display:flex; gap:10px;">
@@ -117,7 +119,6 @@ $stats = [
     </div>
     
     <table>
-
         <thead>
             <tr>
                 <th>Date</th>
@@ -132,8 +133,8 @@ $stats = [
         <tbody>
             <?php foreach($leads as $l): ?>
             <tr>
-                <td data-label="Date"><?= htmlspecialchars($l['created_at']) ?></td>
-                <td data-label="Type"><span class="type-badge type-<?= $l['event_type'] ?>"><?= str_replace('_', ' ', $l['event_type']) ?></span></td>
+                <td data-label="Date"><?= htmlspecialchars($l['created_at'] ?? '') ?></td>
+                <td data-label="Type"><span class="type-badge type-<?= htmlspecialchars($l['event_type'] ?? '') ?>"><?= htmlspecialchars(str_replace('_', ' ', $l['event_type'] ?? '')) ?></span></td>
                 <td data-label="Contact">
                     <strong><?= htmlspecialchars($l['name'] ?? '-') ?></strong><br>
                     <?= htmlspecialchars($l['phone'] ?? '-') ?><br>
@@ -143,25 +144,24 @@ $stats = [
                     <?= htmlspecialchars($l['course'] ?? '-') ?><br>
                     <small><?= htmlspecialchars(substr($l['message'] ?? '', 0, 50)) ?></small>
                 </td>
-                <td data-label="Source"><a href="<?= htmlspecialchars($l['source_url']) ?>" target="_blank">Link</a></td>
+                <td data-label="Source"><a href="<?= htmlspecialchars($l['source_url'] ?? '') ?>" target="_blank">Link</a></td>
                 <td data-label="Status">
-                    <select onchange="updateStatus(<?= $l['id'] ?>, this.value)">
-                        <option value="new" <?= $l['status']==='new'?'selected':'' ?>>New</option>
-                        <option value="contacted" <?= $l['status']==='contacted'?'selected':'' ?>>Contacted</option>
-                        <option value="qualified" <?= $l['status']==='qualified'?'selected':'' ?>>Qualified</option>
-                        <option value="converted" <?= $l['status']==='converted'?'selected':'' ?>>Converted</option>
-                        <option value="closed" <?= $l['status']==='closed'?'selected':'' ?>>Closed</option>
+                    <select onchange="updateStatus('<?= htmlspecialchars($l['id'] ?? '') ?>', this.value)">
+                        <option value="new" <?= ($l['status']??'')==='new'?'selected':'' ?>>New</option>
+                        <option value="contacted" <?= ($l['status']??'')==='contacted'?'selected':'' ?>>Contacted</option>
+                        <option value="qualified" <?= ($l['status']??'')==='qualified'?'selected':'' ?>>Qualified</option>
+                        <option value="converted" <?= ($l['status']??'')==='converted'?'selected':'' ?>>Converted</option>
+                        <option value="closed" <?= ($l['status']??'')==='closed'?'selected':'' ?>>Closed</option>
                     </select>
                 </td>
                 <td data-label="Notes">
-                    <textarea class="notes-area" onblur="updateNotes(<?= $l['id'] ?>, this.value)"><?= htmlspecialchars($l['notes'] ?? '') ?></textarea>
+                    <textarea class="notes-area" onblur="updateNotes('<?= htmlspecialchars($l['id'] ?? '') ?>', this.value)"><?= htmlspecialchars($l['notes'] ?? '') ?></textarea>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    
     <script>
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     
@@ -217,6 +217,5 @@ $stats = [
         }
     }
     </script>
-
 </body>
 </html>

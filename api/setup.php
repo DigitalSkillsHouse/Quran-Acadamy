@@ -1,40 +1,8 @@
 <?php
-require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/storage.php';
 
-$pdo->exec("
-CREATE TABLE IF NOT EXISTS leads (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    event_type TEXT NOT NULL,
-    name TEXT NULL,
-    email TEXT NULL,
-    phone TEXT NULL,
-    course TEXT NULL,
-    message TEXT NULL,
-    source_url TEXT NULL,
-    referrer TEXT NULL,
-    ip_address TEXT NULL,
-    user_agent TEXT NULL,
-    created_at TEXT NOT NULL,
-    status TEXT NOT NULL DEFAULT 'new',
-    notes TEXT NULL
-);
-CREATE INDEX IF NOT EXISTS idx_leads_created ON leads(created_at);
-CREATE INDEX IF NOT EXISTS idx_leads_event ON leads(event_type);
-CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
-
-CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL UNIQUE,
-    password_hash TEXT NOT NULL,
-    created_at TEXT NOT NULL,
-    last_login TEXT NULL
-);
-");
-
-// Check if a user already exists
-$stmt = $pdo->query("SELECT id FROM users LIMIT 1");
-if ($stmt->fetch()) {
-    die("Database already initialized and administrator exists. For security, please delete this setup_db.php file immediately.");
+if (hasUsers()) {
+    die("Database already initialized and administrator exists. For security, setup is disabled.");
 }
 
 $error = '';
@@ -53,9 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Passwords do not match.";
     } else {
         $hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare("INSERT INTO users (username, password_hash, created_at) VALUES (?, ?, ?)");
-        $stmt->execute([$username, $hash, date('Y-m-d H:i:s')]);
-        $success = true;
+        if (createUser($username, $hash)) {
+            $success = true;
+        } else {
+            $error = "Failed to create user. Administrator might already exist.";
+        }
     }
 }
 ?>
@@ -74,15 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         button:hover { background: #b8972f; }
         .error { color: red; margin-bottom: 15px; font-size: 14px; }
         .success { color: green; font-size: 16px; font-weight: bold; text-align: center; }
-        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; font-size: 14px; margin-top: 20px; }
     </style>
 </head>
 <body>
     <div class="box">
         <h2>Administrator Setup</h2>
         <?php if ($success): ?>
-            <div class="success">Administrator created successfully!</div>
-            <div class="warning">CRITICAL SECURITY ACTION REQUIRED:<br>You MUST delete this <code>setup_db.php</code> file from your server immediately.</div>
+            <div class="success">Administrator created successfully! Setup is now complete.</div>
             <br>
             <a href="/admin/login.php"><button>Go to Login</button></a>
         <?php else: ?>

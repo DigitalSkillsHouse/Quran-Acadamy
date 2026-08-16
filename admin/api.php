@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../api/auth.php';
+require_once __DIR__ . '/../api/storage.php';
 requireAuth();
 header('Content-Type: application/json');
 
@@ -17,22 +18,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $input['action'] ?? '';
     
     if ($action === 'update_status') {
-        $id = $input['id'] ?? 0;
+        $id = (string)($input['id'] ?? '');
         $status = $input['status'] ?? '';
         $valid_statuses = ['new', 'contacted', 'qualified', 'converted', 'closed'];
         if (in_array($status, $valid_statuses)) {
-            $stmt = $pdo->prepare("UPDATE leads SET status = ? WHERE id = ?");
-            $stmt->execute([$status, $id]);
-            echo json_encode(['success' => true]);
+            if (updateLead($id, ['status' => $status])) {
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false, 'error' => 'Failed to update status']);
+            }
             exit;
         }
     }
     if ($action === 'update_notes') {
-        $id = $input['id'] ?? 0;
-        $notes = htmlspecialchars($input['notes'] ?? '', ENT_QUOTES, 'UTF-8');
-        $stmt = $pdo->prepare("UPDATE leads SET notes = ? WHERE id = ?");
-        $stmt->execute([$notes, $id]);
-        echo json_encode(['success' => true]);
+        $id = (string)($input['id'] ?? '');
+        // Do not HTML escape before storage. Store raw data.
+        $notes = trim($input['notes'] ?? '');
+        if (updateLead($id, ['notes' => $notes])) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'Failed to update notes']);
+        }
         exit;
     }
     if ($action === 'change_password') {
@@ -49,16 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
         
-        $stmt = $pdo->prepare("SELECT password_hash FROM users WHERE id = ?");
-        $stmt->execute([$_SESSION['admin_user_id']]);
-        $user = $stmt->fetch();
+        $user = getUserById($_SESSION['admin_user_id']);
         
         if ($user && password_verify($current, $user['password_hash'])) {
             $hash = password_hash($new, PASSWORD_DEFAULT);
-            $stmt = $pdo->prepare("UPDATE users SET password_hash = ? WHERE id = ?");
-            $stmt->execute([$hash, $_SESSION['admin_user_id']]);
-            session_regenerate_id(true);
-            echo json_encode(['success' => true]);
+            if (updateUserPassword($_SESSION['admin_user_id'], $hash)) {
+                session_regenerate_id(true);
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false, 'error' => 'Failed to update password']);
+            }
             exit;
         } else {
             echo json_encode(['success' => false, 'error' => 'Incorrect current password']);

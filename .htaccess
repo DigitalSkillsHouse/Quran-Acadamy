@@ -61,7 +61,10 @@ RedirectMatch 404 ^/scratch(/|$)
 </IfModule>
 
 
-# Protect SQLite Database
-<FilesMatch "\.sqlite$">
+# Protect Storage Files
+<FilesMatch "\.(sqlite|jsonl)$">
     Require all denied
 </FilesMatch>
+
+# Block access to data directory (protects users.json and leads.jsonl)
+RedirectMatch 404 ^/api/data(/|$)

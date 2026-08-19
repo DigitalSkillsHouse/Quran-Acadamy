@@ -52,6 +52,53 @@ if ($event_type === 'FORM_SUBMISSION' && !empty($email)) {
     }
 }
 
+function getGeolocation($ip) {
+    if (empty($ip) || $ip === '127.0.0.1' || $ip === '::1') {
+        return null;
+    }
+
+    $url = "https://get.geojs.io/v1/ip/geo/" . urlencode($ip) . ".json";
+
+    $ctx = stream_context_create([
+        'http' => [
+            'timeout' => 2
+        ]
+    ]);
+
+    $result = @file_get_contents($url, false, $ctx);
+    if (!$result) {
+        return null;
+    }
+
+    $data = @json_decode($result, true);
+    if (!$data || empty($data['country'])) {
+        return null;
+    }
+
+    return [
+        'country' => $data['country'] ?? 'Unknown',
+        'country_code' => $data['country_code'] ?? 'Unknown',
+        'region' => $data['region'] ?? 'Unknown',
+        'city' => $data['city'] ?? 'Unknown',
+        'postal_code' => 'Unknown',
+        'timezone' => $data['timezone'] ?? 'Unknown',
+        'ip' => $data['ip'] ?? $ip
+    ];
+}
+
+$geo = getGeolocation($ip_address);
+if (!$geo) {
+    $geo = [
+        'country' => 'Unknown',
+        'country_code' => 'Unknown',
+        'region' => 'Unknown',
+        'city' => 'Unknown',
+        'postal_code' => 'Unknown',
+        'timezone' => 'Unknown',
+        'ip' => $ip_address
+    ];
+}
+
 $leadData = [
     'id' => $id,
     'event_type' => $event_type,
@@ -66,7 +113,8 @@ $leadData = [
     'user_agent' => $user_agent,
     'created_at' => $created_at,
     'status' => 'new',
-    'notes' => ''
+    'notes' => '',
+    'geo' => $geo
 ];
 
 if (appendLead($leadData)) {

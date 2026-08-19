@@ -376,6 +376,7 @@ function formatStatus($status) {
                     <tr>
                         <th>Date</th>
                         <th>Type</th>
+                        <th>Location</th>
                         <th>Contact Info</th>
                         <th>Details</th>
                         <?php if($view==='recycle_bin'): ?>
@@ -395,6 +396,19 @@ function formatStatus($status) {
                         </td>
                         <td data-label="Type">
                             <?= formatBadge($l['event_type'] ?? '') ?>
+                        </td>
+                        <td data-label="Location">
+                            <?php
+                            if (isset($l['geo']) && is_array($l['geo']) && ($l['geo']['country'] ?? 'Unknown') !== 'Unknown') {
+                                $geo = $l['geo'];
+                                echo '<strong style="color:var(--navy); font-size:14px;">' . htmlspecialchars($geo['city'] ?? 'Unknown') . ', ' . htmlspecialchars($geo['country'] ?? 'Unknown') . '</strong><br>';
+                                echo '<span style="color:var(--text-muted); font-size:13px;">' . htmlspecialchars($geo['region'] ?? 'Unknown') . '</span><br>';
+                                $zip = ($geo['postal_code'] ?? 'Unknown');
+                                echo '<span style="color:var(--text-muted); font-size:12px;">ZIP: ' . htmlspecialchars($zip) . '</span>';
+                            } else {
+                                echo '<span style="color:var(--text-muted); font-style:italic; font-size:13px;">Location unavailable</span>';
+                            }
+                            ?>
                         </td>
                         <td data-label="Contact Info">
                             <strong style="color:var(--navy); font-size:15px;"><?= htmlspecialchars($l['name'] ?? '-') ?></strong><br>
@@ -618,6 +632,8 @@ function formatStatus($status) {
 
     // View Lead
     function viewLead(lead) {
+        let hasGeo = lead.geo && lead.geo.country !== 'Unknown';
+
         const fields = [
             { label: 'Date', val: lead.created_at },
             { label: 'Type', val: lead.event_type },
@@ -626,9 +642,15 @@ function formatStatus($status) {
             { label: 'Phone', val: lead.phone },
             { label: 'Course', val: lead.course },
             { label: 'Message', val: lead.message },
+            { label: 'Location', val: hasGeo ? 'Available' : 'Location unavailable' },
+            { label: 'Country', val: hasGeo ? lead.geo.country : null },
+            { label: 'Region/State', val: hasGeo ? lead.geo.region : null },
+            { label: 'City', val: hasGeo ? lead.geo.city : null },
+            { label: 'Postal/ZIP', val: hasGeo ? lead.geo.postal_code : null },
+            { label: 'Timezone', val: hasGeo ? lead.geo.timezone : null },
             { label: 'Source', val: lead.source_url },
             { label: 'Referrer', val: lead.referrer },
-            { label: 'IP Address', val: lead.ip_address },
+            { label: 'Visitor IP', val: lead.ip_address },
             { label: 'User Agent', val: lead.user_agent },
             { label: 'Status', val: lead.status },
             { label: 'Notes', val: lead.notes }

@@ -1,0 +1,34 @@
+name: Secure Leads Export
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export-leads:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y lftp
+        
+      - name: Securely Download Leads via FTP
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          echo "Connecting to FTP to securely retrieve leads.jsonl..."
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" -e "set ftp:ssl-allow no; get api/data/leads.jsonl -o leads.jsonl; quit" || lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" -e "set ssl:verify-certificate no; get api/data/leads.jsonl -o leads.jsonl; quit"
+          
+          if [ ! -f leads.jsonl ]; then
+            echo "Failed to download leads.jsonl. It may not exist on the server or the FTP path is incorrect."
+            exit 1
+          fi
+          echo "Leads securely downloaded to isolated runner environment."
+
+      - name: Upload Leads as GitHub Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: leads-export
+          path: leads.jsonl
+          retention-days: 1 # Artifact will automatically delete after 1 day for security

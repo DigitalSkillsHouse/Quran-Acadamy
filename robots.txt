@@ -33,4 +33,4 @@ Allow: /*.woff2$
 Allow: /*.ttf$
 Allow: /*.pdf$
 
-Sitemap: https://altajweedquraninstitute.com/sitemap.xml
+Sitemap: https://quranacademyqatar.com/sitemap.xml

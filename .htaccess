@@ -9,7 +9,7 @@
     # 301 Redirect nested service & tutor subdirectories directly to flat root URLs
     RewriteRule ^services/(.+?)(\.html)?$ /$1 [R=301,L,NC]
     RewriteRule ^tutors/(.+?)(\.html)?$ /$1 [R=301,L,NC]
-    RewriteRule ^services/?$ /#featured-courses [R=301,L,NC]
+    RewriteRule ^services/?$ /courses [R=301,L,NC]
     RewriteRule ^tutors/?$ /female-tutors [R=301,L,NC]
     RewriteRule ^services_(.+?)(\.html)?$ /$1 [R=301,L,NC]
     RewriteRule ^tutors_(.+?)(\.html)?$ /$1 [R=301,L,NC]

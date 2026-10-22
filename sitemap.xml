@@ -12,6 +12,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://quranacademyqatar.com/courses</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://quranacademyqatar.com/noorani-qaida</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>

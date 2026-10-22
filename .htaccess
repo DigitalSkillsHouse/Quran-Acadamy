@@ -6,16 +6,17 @@
     RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
     RewriteRule ^index\.html$ / [R=301,L]
 
+    # 301 Redirect nested service & tutor subdirectories directly to flat root URLs
+    RewriteRule ^services/(.+?)(\.html)?$ /$1 [R=301,L,NC]
+    RewriteRule ^tutors/(.+?)(\.html)?$ /$1 [R=301,L,NC]
+    RewriteRule ^services/?$ /#featured-courses [R=301,L,NC]
+    RewriteRule ^tutors/?$ /female-tutors [R=301,L,NC]
+    RewriteRule ^services_(.+?)(\.html)?$ /$1 [R=301,L,NC]
+    RewriteRule ^tutors_(.+?)(\.html)?$ /$1 [R=301,L,NC]
+
     # Redirect old .html URLs -> extensionless URLs
     RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
     RewriteRule ^(.+)\.html$ /$1 [R=301,L]
-
-    # Redirect legacy flat service & tutor URLs to clean directory paths
-    RewriteRule ^services_noorani-qaida(\.html)?$ /services/noorani-qaida [R=301,L]
-    RewriteRule ^services_quran-memorization(\.html)?$ /services/quran-memorization [R=301,L]
-    RewriteRule ^services_quran-tafseer(\.html)?$ /services/quran-tafseer [R=301,L]
-    RewriteRule ^services_six-kalima(\.html)?$ /services/six-kalima [R=301,L]
-    RewriteRule ^tutors_female-tutors(\.html)?$ /tutors/female-tutors [R=301,L]
 
     # Redirect nested thank-you.html from subdirectories (e.g. /services/thank-you.html) to root
     RewriteRule ^.*/thank-you$ /thank-you [R=301,L]
@@ -28,23 +29,23 @@
 </IfModule>
 
 # ============================================================
-# PUBLIC: robots.txt
-# MUST be accessible to search engines and browsers.
+# PUBLIC: robots.txt and llms.txt
+# MUST be accessible to search engines, AI models, and browsers.
 # ============================================================
-<Files "robots.txt">
+<FilesMatch "^(robots|llms)\.txt$">
     Require all granted
-</Files>
+</FilesMatch>
 
 # ============================================================
 # PROTECT DEVELOPMENT / SENSITIVE FILES
-# robots.txt is excluded because it is explicitly public above.
+# robots.txt and llms.txt are excluded because they are public.
 # ============================================================
 <FilesMatch "\.(py|md|log|sh|bat)$">
     Require all denied
 </FilesMatch>
 
-# Protect other .txt files except robots.txt
-<FilesMatch "^(?!robots\.txt$).+\.txt$">
+# Protect other .txt files except robots.txt and llms.txt
+<FilesMatch "^(?!(robots|llms)\.txt$).+\.txt$">
     Require all denied
 </FilesMatch>
 

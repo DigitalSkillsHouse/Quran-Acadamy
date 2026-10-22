@@ -195,7 +195,7 @@
 // --- LEADS TRACKING SYSTEM ---
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Form tracking
-    const forms = document.querySelectorAll('form[action="thank-you.html"]');
+    const forms = document.querySelectorAll('form#trialForm, form#contactForm, form.trial-form, form[action*="thank-you"]');
     forms.forEach(form => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -220,17 +220,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(data)
                 });
-                const result = await res.json();
-                if (res.ok && result.success) {
-                    window.location.href = form.action || 'thank-you.html';
-                } else {
-                    alert('Submission failed. Please try again or contact us via WhatsApp.');
-                    if (btn) btn.disabled = false;
-                }
+                await res.json().catch(() => ({}));
+                window.location.href = '/thank-you';
             } catch (error) {
-                console.error(error);
-                alert('Connection error. Please try again or contact us via WhatsApp.');
-                if (btn) btn.disabled = false;
+                console.error('Lead track fallback:', error);
+                window.location.href = '/thank-you';
             }
         });
     });

@@ -2,23 +2,39 @@
 (function(){
   'use strict';
 
-  /* ---------- Header Scroll + Info Bar ---------- */
+  /* ---------- Header Scroll + Dynamic Top-Info-Bar Clearance ---------- */
   const header = document.querySelector('.header');
   const topInfoBar = document.querySelector('.top-info-bar');
-  const scrollThreshold = 60;
-  function handleScroll(){
+  const scrollThreshold = 30;
+
+  function updateHeaderPosition(){
     if(!header) return;
-    const scrolled = window.scrollY > scrollThreshold;
-    header.classList.toggle('scrolled', scrolled);
-    // Hide info bar on scroll and move header up
+    const isScrolled = window.scrollY > scrollThreshold;
+    header.classList.toggle('scrolled', isScrolled);
     if(topInfoBar){
-      topInfoBar.classList.toggle('hidden', scrolled);
-      header.style.top = scrolled ? '0' : '';
+      topInfoBar.classList.toggle('hidden', isScrolled);
+      if(isScrolled){
+        header.style.setProperty('top', '0px', 'important');
+      } else {
+        const barHeight = topInfoBar.offsetHeight || (window.innerWidth <= 480 ? 66 : (window.innerWidth <= 992 ? 60 : 38));
+        header.style.setProperty('top', barHeight + 'px', 'important');
+      }
     }
     const btt = document.querySelector('.back-to-top');
-    if(btt) btt.classList.toggle('show', window.scrollY > 400);
+    if(btt && window.innerWidth > 992) {
+      btt.classList.toggle('show', window.scrollY > 400);
+    }
   }
-  window.addEventListener('scroll', handleScroll, {passive:true});
+
+  window.addEventListener('scroll', updateHeaderPosition, {passive: true});
+  window.addEventListener('resize', updateHeaderPosition, {passive: true});
+  window.addEventListener('orientationchange', updateHeaderPosition, {passive: true});
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateHeaderPosition);
+  } else {
+    updateHeaderPosition();
+  }
+  window.addEventListener('load', updateHeaderPosition);
 
   /* ---------- Mobile Nav ---------- */
   const hamburger = document.querySelector('.hamburger');

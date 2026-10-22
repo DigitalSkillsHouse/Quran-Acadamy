@@ -260,19 +260,28 @@ button {
   font-size: .9rem
 }
 
-@media(max-width:768px) {
+.info-wa-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+@media(max-width:992px) {
   .top-info-bar {
     padding: 6px 0 !important;
   }
   .top-info-bar .container {
-    justify-content: center;
-    text-align: center;
-    gap: 8px;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 6px !important;
+    padding: 0 12px !important;
   }
 
   .top-info-bar-left {
-    justify-content: center;
-    gap: 12px;
+    justify-content: center !important;
+    gap: 6px 14px !important;
   }
 
   .top-info-bar-right {
@@ -280,7 +289,37 @@ button {
   }
 
   .header {
-    top: 34px !important;
+    top: 60px !important;
+    transition: top 0.25s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+  }
+
+  .header.scrolled {
+    top: 0 !important;
+  }
+
+  .header .logo img {
+    height: 44px !important;
+    width: auto !important;
+  }
+
+  .whatsapp-float,
+  .back-to-top {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+@media(max-width:480px) {
+  .header {
+    top: 66px !important;
+  }
+  .header.scrolled {
+    top: 0 !important;
+  }
+  .header .logo img {
+    height: 40px !important;
   }
 }
 
@@ -3695,6 +3734,15 @@ body > section:first-of-type {
   /* Hide old sticky-mobile-cta */
   .sticky-mobile-cta {
     display: none !important;
+  }
+
+  /* Hide floating buttons that overlap or peek behind bottom nav bar */
+  .whatsapp-float,
+  .back-to-top {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }
 

@@ -100,19 +100,13 @@
   modal?.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
 
-  if(modal && !sessionStorage.getItem('modalShown')){
-    setTimeout(openModal, 4000);
-    sessionStorage.setItem('modalShown', '1');
-  }
-
   /* ---------- Contact Form Validation ---------- */
   const contactForm = document.getElementById('contactForm');
   if(contactForm){
     contactForm.addEventListener('submit', function(e){
-      e.preventDefault();
       let valid = true;
       contactForm.querySelectorAll('[required]').forEach(function(field){
-        const group = field.closest('.form-group');
+        const group = field.closest('.form-group') || field.closest('.c-form-group');
         if(!field.value.trim()){
           group?.classList.add('error');
           valid = false;
@@ -127,22 +121,14 @@
           }
         }
       });
-      if(valid){
-        const btn = contactForm.querySelector('button[type="submit"]');
-        if(btn){
-          btn.textContent = 'Message Sent ✓';
-          btn.disabled = true;
-          setTimeout(function(){
-            btn.textContent = 'Send Message';
-            btn.disabled = false;
-            contactForm.reset();
-          }, 3000);
-        }
+      if (!valid) {
+        e.preventDefault();
       }
     });
     contactForm.querySelectorAll('[required]').forEach(function(field){
       field.addEventListener('input', function(){
-        this.closest('.form-group')?.classList.remove('error');
+        const group = this.closest('.form-group') || this.closest('.c-form-group');
+        group?.classList.remove('error');
       });
     });
   }
@@ -151,20 +137,17 @@
   const trialForm = document.getElementById('trialForm');
   if(trialForm){
     trialForm.addEventListener('submit', function(e){
-      e.preventDefault();
       let valid = true;
       trialForm.querySelectorAll('[required]').forEach(function(field){
         const group = field.closest('.form-group');
         if(!field.value.trim()){ group?.classList.add('error'); valid = false; }
         else { group?.classList.remove('error'); }
       });
-      if(valid){
+      if(!valid){
+        e.preventDefault();
+      } else {
         const btn = trialForm.querySelector('button[type="submit"]');
-        if(btn){
-          btn.textContent = 'Submitted ✓';
-          btn.disabled = true;
-          setTimeout(closeModal, 2000);
-        }
+        if(btn) btn.textContent = 'Submitting...';
       }
     });
   }

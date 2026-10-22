@@ -10,6 +10,13 @@
     RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
     RewriteRule ^(.+)\.html$ /$1 [R=301,L]
 
+    # Redirect legacy flat service & tutor URLs to clean directory paths
+    RewriteRule ^services_noorani-qaida(\.html)?$ /services/noorani-qaida [R=301,L]
+    RewriteRule ^services_quran-memorization(\.html)?$ /services/quran-memorization [R=301,L]
+    RewriteRule ^services_quran-tafseer(\.html)?$ /services/quran-tafseer [R=301,L]
+    RewriteRule ^services_six-kalima(\.html)?$ /services/six-kalima [R=301,L]
+    RewriteRule ^tutors_female-tutors(\.html)?$ /tutors/female-tutors [R=301,L]
+
     # Redirect nested thank-you.html from subdirectories (e.g. /services/thank-you.html) to root
     RewriteRule ^.*/thank-you$ /thank-you [R=301,L]
 

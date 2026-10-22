@@ -1,0 +1,17 @@
+{
+  "name": "Al-Tajweed ul Quran Academy Qatar",
+  "short_name": "Quran Academy",
+  "description": "Online Quran Classes in Qatar with Verified Female Tutors",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A3A2A",
+  "theme_color": "#0A3A2A",
+  "icons": [
+    {
+      "src": "/assets/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -289,16 +289,20 @@ button {
   }
 
   .header {
-    top: 60px !important;
-    transition: top 0.25s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+    top: 70px !important;
+    padding-top: 16px !important;
+    padding-bottom: 14px !important;
+    transition: top 0.25s ease, background 0.3s ease, box-shadow 0.3s ease, padding 0.25s ease !important;
   }
 
   .header.scrolled {
     top: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
   }
 
   .header .logo img {
-    height: 44px !important;
+    height: 42px !important;
     width: auto !important;
   }
 
@@ -313,13 +317,17 @@ button {
 
 @media(max-width:480px) {
   .header {
-    top: 66px !important;
+    top: 76px !important;
+    padding-top: 16px !important;
+    padding-bottom: 14px !important;
   }
   .header.scrolled {
     top: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
   }
   .header .logo img {
-    height: 40px !important;
+    height: 38px !important;
   }
 }
 
@@ -2503,10 +2511,19 @@ body > section:first-of-type {
   border-bottom: none !important; /* Removed harsh gold line */
 }
 
-/* 2. Reduce Header Height & Fix Alignment */
+/* 2. Premium Header Spacing & Alignment */
 .header {
-  padding: 10px 0 !important; /* Reduced from 16px */
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important; /* Much softer border */
+  padding-top: 18px !important;
+  padding-bottom: 16px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+}
+
+.header.scrolled {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  box-shadow: 0 10px 30px rgba(10, 58, 42, 0.08) !important;
 }
 
 .header .container {
@@ -2516,11 +2533,48 @@ body > section:first-of-type {
 }
 
 /* Adjust the logo size to prevent height stretching */
-.brand-logo {
-  height: 42px !important; 
+.brand-logo,
+.header .logo img {
+  height: 48px !important; 
   width: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
   margin-bottom: 0 !important;
   display: block !important;
+}
+
+@media (max-width: 992px) {
+  .header {
+    top: 70px !important;
+    padding-top: 16px !important;
+    padding-bottom: 14px !important;
+  }
+  .header.scrolled {
+    top: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+  .brand-logo,
+  .header .logo img {
+    height: 42px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    top: 76px !important;
+    padding-top: 16px !important;
+    padding-bottom: 14px !important;
+  }
+  .header.scrolled {
+    top: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+  .brand-logo,
+  .header .logo img {
+    height: 38px !important;
+  }
 }
 
 /* 3. CTA Button - Single line text, sleek padding */
@@ -2543,7 +2597,7 @@ body > section:first-of-type {
 .main-hero,
 main > section:first-of-type,
 body > section:first-of-type {
-  padding-top: 175px !important;
+  padding-top: 180px !important;
 }
 
 @media (max-width: 992px) {
@@ -2555,7 +2609,7 @@ body > section:first-of-type {
   .main-hero,
   main > section:first-of-type,
   body > section:first-of-type {
-    padding-top: 160px !important;
+    padding-top: 175px !important;
   }
 }
 
@@ -2568,7 +2622,20 @@ body > section:first-of-type {
   .main-hero,
   main > section:first-of-type,
   body > section:first-of-type {
-    padding-top: 155px !important;
+    padding-top: 175px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero,
+  .hero-v2,
+  .course-v2-hero,
+  .page-hero,
+  .page-banner,
+  .main-hero,
+  main > section:first-of-type,
+  body > section:first-of-type {
+    padding-top: 180px !important;
   }
 }
 
